@@ -6,7 +6,11 @@ export default {
     './node_modules/preline/preline.js',
   ],
   theme: {
-    extend: {},
+    animation: {
+      'spin-slow': 'spin 20s linear infinite',
+      'spin-slow-1': 'spin 115s linear infinite',
+
+    }
   },
   plugins: [
     require('preline/plugin'),

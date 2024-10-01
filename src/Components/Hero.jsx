@@ -5,6 +5,14 @@ import { Navbar } from './Navbar'
 import glass from "../../public/home/glass.webp"
 import blurimg from "../../public/home/blurimg.webp"
 import blurimg2 from "../../public/home/blurimg2.webp"
+import g1 from "../../public/green/g1.webp"
+import hero from "../../public/Bg/Hero.webp"
+
+import globe from "../../public/globe/planet.webp"
+import ring from "../../public/globe/ring.svg"
+import orbit from "../../public/globe/orbit.svg"
+
+
 
 
 
@@ -32,7 +40,8 @@ const Hero = () => {
   }
   return (
     <div className=''>
-      <div className='bg-gray-800 h-screen pt-5'>
+      <div className=' h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
+        <img srcSet={hero} className='z-[-1] w-[80%] scale-[2] absolute top-[-20rem] bottom-full rotate-[20deg]' />
         <Navbar />
         <div className='bg-black max-w-screen-2xl overflow-hidden m-auto mx-3 rounded-3xl'>
           <div className='pt-56 relative h-screen'>
@@ -67,7 +76,18 @@ const Hero = () => {
         </div>
       </div>
       <div>
-        <div className='bg-red-500 h-screen'></div>
+        <div className='bg-black h-[120vh] pt-36 pb-36'>
+          <div className='relative '>
+            <div className='flex items-center relative justify-center'>
+              <div className='flex items-center relative justify-center w-[70%] h-full'>
+                <img className='w-[55%] z-[2] animate-spin-slow-1' srcSet={globe} />
+                <img className='w-[75%] z-[2] absolute animate-spin-slow' srcSet={ring} />
+                <img className='w-[75%] z-[2] absolute' srcSet={orbit} />
+              </div>
+              <div className='absolute z-[1] bg-green-500 w-[45%] h-full rounded-[100%] blur-3xl opacity-90'></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

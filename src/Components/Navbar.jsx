@@ -34,7 +34,7 @@ export const Navbar = () => {
     }
     return (
         <div> <header className="">
-            <nav aria-label="Global" className="flex fixed z-50 w-full rounded-3xl items-center justify-between bg-black p-6 lg:px-8">
+            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center justify-between bg-black p-6 lg:px-8">
                 <div className="flex lg:flex-1">
                     <a href="#" className="-m-1.5 p-1.5">
                         <span className="sr-only">Your Company</span>
@@ -45,7 +45,7 @@ export const Navbar = () => {
                         />
                     </a>
                 </div>
-                <div className="flex lg:hidden">
+                <div className="flex z-[99] lg:hidden">
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
