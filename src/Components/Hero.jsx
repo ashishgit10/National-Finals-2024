@@ -47,29 +47,29 @@ const Hero = () => {
   }
   return (
     <div className=''>
-      <div className=' h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
-        <img srcSet={hero} className='z-[-1] w-[80%] scale-[2] absolute top-[-20rem] bottom-full rotate-[20deg]' />
+      <div className=' md:h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
+        <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[20deg]' />
         <Navbar />
         <div className='bg-black max-w-screen-2xl overflow-hidden m-auto mx-3 rounded-3xl'>
-          <div className='pt-56 relative h-screen'>
+          <div className='pt-56 relative md:h-screen'>
             <div className='w-full'>
               <img srcSet={glass} className='absolute w-[700px] top-20 rotate-[70deg] left-[-245px]' />
               <img srcSet={blurimg} className='absolute w-[400px] top-32 rotate-[-20deg] right-[-145px]' />
               <img srcSet={blurimg2} className='absolute w-[400px] top-60 rotate-[-50deg] right-[-145px]' />
             </div>
             <div className='relative z-10'>
-              <span className='text-6xl font-medium flex flex-wrap justify-center items-center text-white text-center'>
+              <span className='md:text-6xl text-5xl md:pb-4 mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
                 Revolutionizing
-                <span className='gradient-text leading-[100px] pb-4 md:pb-0'>Energy Trading</span>
+                <span className=''>Energy Trading</span>
               </span>
               <div className='pb-4 px-7 flex justify-center items-center flex-col'>
-                <h2 className='text-center text-gray-400 text-xl'>Empowering Individuals and Communities
+                <h2 className='text-center text-gray-400 md:text-xl text-md'>Empowering Individuals and Communities
                 </h2>
-                <span className='text-center text-gray-400 text-xl mb-5'>
+                <span className='text-center text-gray-400 md:text-xl text-md mb-5'>
                   to Trade Energy Seamlessly and Securely
                 </span>
 
-                <button onClick={dashboard} type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200  text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-black dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+                <button onClick={dashboard} type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg text-gray-800 shadow-sm hover:shadow-2xl shadow-[#23f7dd] focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-[#23f7dd] ">
                   Go to DashBoard
                   <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
@@ -83,28 +83,28 @@ const Hero = () => {
         </div>
       </div>
       <div>
-        <div className='bg-[#0e0e0e] h-[120vh] relative z-0 pt-72 pb-[50rem]'>
-          <div className='relative '>
-            <img srcSet={g6} className='absolute w-[200px] left-[50px] top-[-180px]' />
-            <img srcSet={g3} className='absolute w-[250px] z-[-1] right-[-30px] top-[-115px]' />
+        <div className='bg-[#0e0e0e] overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
+          <div className='relative max-w-[160%]'>
+            <img srcSet={g6} className='absolute md:w-[200px] w-[100px] md:left-[50px] left-[10px] top-[-70px] md:top-[-180px]' />
+            <img srcSet={g3} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-115px] top-[-75px]' />
 
-            <div className='bg-[#020202] py-6 m-auto max-w-[95%] rounded-3xl'>
+            <div className='bg-[#020202] py-6 m-auto md:max-w-[95%] rounded-3xl'>
 
               <div className='flex items-center relative justify-center'>
                 <div className='absolute text-white z-[20]'>
                   <div>
-                    <h1 className='text-[70px] leading-[70px] font-medium'>Future-Proof<br></br> in Every Way</h1>
+                    <h1 className='md:text-[70px] text-5xl md:leading-[70px] font-medium'>Future-Proof<br></br> in Every Way</h1>
                   </div>
                 </div>
-                <div className='flex items-center relative justify-center w-[70%] h-full'>
-                  <img className='w-[65%] z-[2] animate-spin-slow-1 opacity-[0.90] mix-blend-normal' srcSet={globe} />
-                  <img className='w-[85%] z-[2] absolute animate-spin-slow' srcSet={ring} />
-                  <img className='w-[85%] z-[2] absolute' srcSet={orbit} />
+                <div className='flex items-center relative justify-center md:w-[70%] h-full'>
+                  <img className='md:w-[65%] max-w-[110%] z-[2] animate-spin-slow-1 opacity-[0.90] mix-blend-normal' srcSet={globe} />
+                  <img className='md:w-[85%] max-w-[140%] z-[2] absolute animate-spin-slow' srcSet={ring} />
+                  <img className='md:w-[85%] max-w-[140%] z-[2] absolute' srcSet={orbit} />
 
                 </div>
 
-                <div className='absolute z-[1] bg-green-500 w-[45%] h-full rounded-[100%] blur-[20px] opacity-90'></div>
-                <div className='absolute z-[1] bg-green-500 w-[45%] h-full rounded-[100%] blur-[150px] opacity-90 '></div>
+                <div className='absolute z-[1] bg-green-500 md:w-[45%] w-[105%]  h-full rounded-[100%] md:blur-[20px] blur-[70px] opacity-90'></div>
+                <div className='absolute z-[1] bg-green-500 md:w-[45%] w-[125%] h-full rounded-[100%] md:blur-[150px] blur-[40px] opacity-90 '></div>
 
               </div>
             </div>

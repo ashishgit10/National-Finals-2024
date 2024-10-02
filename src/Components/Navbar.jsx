@@ -34,22 +34,13 @@ export const Navbar = () => {
     }
     return (
         <div> <header className="">
-            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center justify-between bg-black p-6 lg:px-8">
-                <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
-                        <img
-                            alt=""
-                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            className="h-8 w-auto"
-                        />
-                    </a>
-                </div>
-                <div className="flex z-[99] lg:hidden">
+            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
+               
+                <div className="flex z-[99] lg:hidden ">
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -57,12 +48,12 @@ export const Navbar = () => {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-500">
+                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-300">
                             {item.name}
                         </a>
                     ))}
                 </div>
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+             {/*    <div className="hidden lg:flex lg:flex-1 lg:justify-end">
 
                     <button
                         onClick={handleDisconnect}
@@ -70,7 +61,7 @@ export const Navbar = () => {
                         Disconnect Wallet
                     </button>
 
-                </div>
+                </div> */}
             </nav>
             <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
                 <div className="fixed inset-0 z-50" />
@@ -87,7 +78,7 @@ export const Navbar = () => {
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                            className="-m-2.5 rounded-md p-2.5 text-white"
                         >
                             <span className="sr-only">Close menu</span>
                             <XMarkIcon aria-hidden="true" className="h-6 w-6" />
@@ -106,14 +97,14 @@ export const Navbar = () => {
                                     </a>
                                 ))}
                             </div>
-                            <div className="py-6">
+                         {/*    <div className="py-6">
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     Log in
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </DialogPanel>
