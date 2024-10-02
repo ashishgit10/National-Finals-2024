@@ -11,6 +11,13 @@ import hero from "../../public/Bg/Hero.webp"
 import globe from "../../public/globe/planet.webp"
 import ring from "../../public/globe/ring.svg"
 import orbit from "../../public/globe/orbit.svg"
+import g3 from "../../public/green/g3.webp"
+import g4 from "../../public/green/g4.webp"
+import g2 from "../../public/green/g2.webp"
+import g6 from "../../public/green/g6.webp"
+
+import g5 from "../../public/green/g5.webp"
+
 
 
 
@@ -76,17 +83,33 @@ const Hero = () => {
         </div>
       </div>
       <div>
-        <div className='bg-black h-[120vh] pt-36 pb-36'>
+        <div className='bg-[#0e0e0e] h-[120vh] relative z-0 pt-72 pb-[50rem]'>
           <div className='relative '>
-            <div className='flex items-center relative justify-center'>
-              <div className='flex items-center relative justify-center w-[70%] h-full'>
-                <img className='w-[55%] z-[2] animate-spin-slow-1' srcSet={globe} />
-                <img className='w-[75%] z-[2] absolute animate-spin-slow' srcSet={ring} />
-                <img className='w-[75%] z-[2] absolute' srcSet={orbit} />
+            <img srcSet={g6} className='absolute w-[200px] left-[50px] top-[-180px]' />
+            <img srcSet={g3} className='absolute w-[250px] z-[-1] right-[-30px] top-[-115px]' />
+
+            <div className='bg-[#020202] py-6 m-auto max-w-[95%] rounded-3xl'>
+
+              <div className='flex items-center relative justify-center'>
+                <div className='absolute text-white z-[20]'>
+                  <div>
+                    <h1 className='text-[70px] leading-[70px] font-medium'>Future-Proof<br></br> in Every Way</h1>
+                  </div>
+                </div>
+                <div className='flex items-center relative justify-center w-[70%] h-full'>
+                  <img className='w-[65%] z-[2] animate-spin-slow-1 opacity-[0.90] mix-blend-normal' srcSet={globe} />
+                  <img className='w-[85%] z-[2] absolute animate-spin-slow' srcSet={ring} />
+                  <img className='w-[85%] z-[2] absolute' srcSet={orbit} />
+
+                </div>
+
+                <div className='absolute z-[1] bg-green-500 w-[45%] h-full rounded-[100%] blur-[20px] opacity-90'></div>
+                <div className='absolute z-[1] bg-green-500 w-[45%] h-full rounded-[100%] blur-[150px] opacity-90 '></div>
+
               </div>
-              <div className='absolute z-[1] bg-green-500 w-[45%] h-full rounded-[100%] blur-3xl opacity-90'></div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

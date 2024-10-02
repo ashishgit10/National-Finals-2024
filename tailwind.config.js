@@ -8,7 +8,7 @@ export default {
   theme: {
     animation: {
       'spin-slow': 'spin 20s linear infinite',
-      'spin-slow-1': 'spin 115s linear infinite',
+      'spin-slow-1': 'spin 155s linear infinite',
 
     }
   },
