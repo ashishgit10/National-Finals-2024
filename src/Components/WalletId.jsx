@@ -7,7 +7,7 @@ const WalletId = () => {
     let id = localStorage.getItem("walletId")
     return (
         <div>
-            <header className="border-b relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full  text-sm py-5 glasseffect">
+            <header className="border-b border-black relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full  text-sm py-5 glasseffect">
                 <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
                     <div className="flex items-center justify-between">
 

@@ -111,12 +111,12 @@ const Monitor = () => {
                     <div>
                         <div className='mt-4'>
                             <div className="flex rounded-lg shadow-sm ">
-                                <input type="text" className="py-2 px-3 pe-11 border outline-none block w-full border-gray-200 shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-300 dark:border-neutral-700 dark:text-black dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
-                                <span className="px-4 inline-flex items-center min-w-fit rounded-r-md border border-e-0 border-gray-200 bg-white text-sm text-black ">ETH</span>
+                                <input type="text" className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black disabled:opacity-50 disabled:pointer-events-none   dark:text-black dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
+                                <span className="px-4 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-sm text-black ">ETH</span>
                             </div>
                             <div className="flex rounded-lg shadow-sm mt-2">
-                                <input type="text" className="py-2 px-3 pe-11 border outline-none block w-full border-gray-200 shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-300 dark:border-neutral-700 dark:text-black dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
-                                <span className="px-2 inline-flex items-center min-w-fit rounded-r-md border border-e-0 border-gray-200 bg-white text-xs text-black  ">Address</span>
+                                <input type="text" className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black disabled:opacity-50 disabled:pointer-events-none  dark:text-black dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
+                                <span className="px-2 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-xs text-black  ">Address</span>
                             </div>
                         </div>
                         <div className='mt-2'>
