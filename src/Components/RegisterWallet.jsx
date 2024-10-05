@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWallet } from '../context/WalletContext';
-import axios from 'axios'; // Import axios for HTTP requests
+import axios from 'axios'; 
+import dash from '/Bg/dash.jpg';
 
 const RegisterWallet = () => {
   const { connectMetaMask, walletAddress } = useWallet();
@@ -39,9 +40,9 @@ const RegisterWallet = () => {
     }
 
     try {
-      // Send userName and walletAddress to the backend
+   
       await axios.post('/api/register', { userName, walletAddress });
-      navigate('/home'); // Redirect after successful registration
+      navigate('/home'); 
     } catch (error) {
       console.error('Error registering user:', error);
       setError('Failed to register. Please try again.');
@@ -51,7 +52,7 @@ const RegisterWallet = () => {
   return (
     <div className="dashboard bg-neutral-700 h-full"
       style={{
-        backgroundImage: 'url(../../public/Bg/wallet.jpg)', // Replace with your image path
+        backgroundImage: `url(${dash})`, 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',

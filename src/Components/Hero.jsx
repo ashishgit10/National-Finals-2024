@@ -2,21 +2,21 @@ import { useState } from 'react'
 import { useWallet } from '../context/WalletContext'
 import { useNavigate } from 'react-router-dom'
 import { Navbar } from './Navbar'
-import glass from "../../public/home/glass.webp"
-import blurimg from "../../public/home/blurimg.webp"
-import blurimg2 from "../../public/home/blurimg2.webp"
-import g1 from "../../public/green/g1.webp"
-import hero from "../../public/Bg/Hero.webp"
+import glass from "/home/glass.webp"
+import blurimg from "/home/blurimg.webp"
+import blurimg2 from "/home/blurimg2.webp"
+import g1 from "/green/g1.webp"
+import hero from "/Bg/Hero.webp"
 
-import globe from "../../public/globe/planet.webp"
-import ring from "../../public/globe/ring.svg"
-import orbit from "../../public/globe/orbit.svg"
-import g3 from "../../public/green/g3.webp"
-import g4 from "../../public/green/g4.webp"
-import g2 from "../../public/green/g2.webp"
-import g6 from "../../public/green/g6.webp"
+import globe from "/globe/planet.webp"
+import ring from "/globe/ring.svg"
+import orbit from "/globe/orbit.svg"
+import g3 from "/green/g3.webp"
+import g4 from "/green/g4.webp"
+import g2 from "/green/g2.webp"
+import g6 from "/green/g6.webp"
 
-import g5 from "../../public/green/g5.webp"
+import g5 from "/green/g5.webp"
 
 
 
@@ -47,25 +47,25 @@ const Hero = () => {
   }
   return (
     <div className=''>
-      <div className=' md:h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
+      <div className=' md:h-screen z-[1] overflow-hidden bg-white pt-5 relative'>
         <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[20deg]' />
         <Navbar />
-        <div className='bg-black max-w-screen-2xl overflow-hidden m-auto mx-3 rounded-3xl'>
+        <div className='bg-white max-w-screen-2xl overflow-hidden m-auto mx-3 rounded-3xl'>
           <div className='pt-56 relative md:h-screen'>
             <div className='w-full'>
-              <img srcSet={glass} className='absolute w-[700px] top-20 rotate-[70deg] left-[-245px]' />
+              <img srcSet={glass} className='absolute w-[686px] top-20 rotate-[70deg] left-[-245px]' />
               <img srcSet={blurimg} className='absolute w-[400px] top-32 rotate-[-20deg] right-[-145px]' />
               <img srcSet={blurimg2} className='absolute w-[400px] top-60 rotate-[-50deg] right-[-145px]' />
             </div>
             <div className='relative z-10'>
-              <span className='md:text-6xl text-5xl md:pb-4 mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
+              <span className='md:text-6xl text-5xl md:pb-4 mb-5 font-medium flex flex-wrap justify-center items-center text-black text-center'>
                 Revolutionizing
                 <span className=''>Energy Trading</span>
               </span>
               <div className='pb-4 px-7 flex justify-center items-center flex-col'>
-                <h2 className='text-center text-gray-400 md:text-xl text-md'>Empowering Individuals and Communities
+                <h2 className='text-center text-black md:text-xl text-md'>Empowering Individuals and Communities
                 </h2>
-                <span className='text-center text-gray-400 md:text-xl text-md mb-5'>
+                <span className='text-center text-black md:text-xl text-md mb-5'>
                   to Trade Energy Seamlessly and Securely
                 </span>
 
@@ -78,22 +78,22 @@ const Hero = () => {
                 </button>
               </div>
             </div>
-            <div className=' bg-[linear-gradient(#0a0a0a00_20%,_#0a0a0a_61%)] absolute top-4 bottom-[-220px] w-full'></div>
+            <div className=' bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61%)] absolute top-4 bottom-[-220px] w-full'></div>
           </div>
         </div>
       </div>
       <div>
-        <div className='bg-[#0e0e0e] overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
+        <div className='bg-white overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
           <div className='relative max-w-[160%]'>
             <img srcSet={g6} className='absolute md:w-[200px] w-[100px] md:left-[50px] left-[10px] top-[-70px] md:top-[-180px]' />
             <img srcSet={g3} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-115px] top-[-75px]' />
 
-            <div className='bg-[#020202] py-6 m-auto md:max-w-[95%] rounded-3xl'>
+            <div className='bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61)] py-6 m-auto md:max-w-[95%] rounded-3xl'>
 
               <div className='flex items-center relative justify-center'>
                 <div className='absolute text-white z-[20]'>
                   <div>
-                    <h1 className='md:text-[70px] text-5xl md:leading-[70px] font-medium'>Future-Proof<br></br> in Every Way</h1>
+                    <h1 className='lg:text-[70px] text-5xl md:leading-[70px] font-medium'>Future-Proof<br></br> in Every Way</h1>
                   </div>
                 </div>
                 <div className='flex items-center relative justify-center md:w-[70%] h-full'>

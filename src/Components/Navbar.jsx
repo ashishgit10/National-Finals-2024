@@ -34,13 +34,13 @@ export const Navbar = () => {
     }
     return (
         <div> <header className="">
-            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
+            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center  justify-end lg:justify-center bg-white p-4">
                
                 <div className="flex z-[99] lg:hidden ">
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black"
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -48,7 +48,7 @@ export const Navbar = () => {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-300">
+                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-black">
                             {item.name}
                         </a>
                     ))}
@@ -91,7 +91,7 @@ export const Navbar = () => {
                                     <a
                                         key={item.name}
                                         href={item.href}
-                                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-500 hover:bg-gray-50"
+                                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-50"
                                     >
                                         {item.name}
                                     </a>
