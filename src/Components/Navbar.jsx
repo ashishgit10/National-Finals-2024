@@ -34,8 +34,8 @@ export const Navbar = () => {
     }
     return (
         <div> <header className="">
-            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center  justify-end lg:justify-center bg-white p-4">
-               
+            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
+
                 <div className="flex z-[99] lg:hidden ">
                     <button
                         type="button"
@@ -48,12 +48,12 @@ export const Navbar = () => {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-black">
+                        <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
                             {item.name}
                         </a>
                     ))}
                 </div>
-             {/*    <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+                {/*    <div className="hidden lg:flex lg:flex-1 lg:justify-end">
 
                     <button
                         onClick={handleDisconnect}
@@ -97,7 +97,7 @@ export const Navbar = () => {
                                     </a>
                                 ))}
                             </div>
-                         {/*    <div className="py-6">
+                            {/*    <div className="py-6">
                                 <a
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
@@ -112,3 +112,6 @@ export const Navbar = () => {
         </header></div>
     )
 }
+
+
+export default Navbar

@@ -47,10 +47,10 @@ const Hero = () => {
   }
   return (
     <div className=''>
-      <div className=' md:h-screen z-[1] overflow-hidden bg-white pt-5 relative'>
+      <div className=' md:h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
         <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[20deg]' />
         <Navbar />
-        <div className='bg-white max-w-screen-2xl overflow-hidden m-auto mx-3 rounded-3xl'>
+        <div className='bg-black max-w-screen-2xl overflow-hidden m-auto mx-3 rounded-3xl'>
           <div className='pt-56 relative md:h-screen'>
             <div className='w-full'>
               <img srcSet={glass} className='absolute w-[686px] top-20 rotate-[70deg] left-[-245px]' />
@@ -58,14 +58,14 @@ const Hero = () => {
               <img srcSet={blurimg2} className='absolute w-[400px] top-60 rotate-[-50deg] right-[-145px]' />
             </div>
             <div className='relative z-10'>
-              <span className='md:text-6xl text-5xl md:pb-4 mb-5 font-medium flex flex-wrap justify-center items-center text-black text-center'>
+              <span className='md:text-6xl text-5xl md:pb-4 mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
                 Revolutionizing
                 <span className=''>Energy Trading</span>
               </span>
               <div className='pb-4 px-7 flex justify-center items-center flex-col'>
-                <h2 className='text-center text-black md:text-xl text-md'>Empowering Individuals and Communities
+                <h2 className='text-center text-white md:text-xl text-md'>Empowering Individuals and Communities
                 </h2>
-                <span className='text-center text-black md:text-xl text-md mb-5'>
+                <span className='text-center text-white md:text-xl text-md mb-5'>
                   to Trade Energy Seamlessly and Securely
                 </span>
 
@@ -78,12 +78,12 @@ const Hero = () => {
                 </button>
               </div>
             </div>
-            <div className=' bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61%)] absolute top-4 bottom-[-220px] w-full'></div>
+            <div className=' bg-[linear-gradient(#0a0a0a00_20%,_#090909_61%)] absolute top-4 bottom-[-220px] w-full'></div>
           </div>
         </div>
       </div>
       <div>
-        <div className='bg-white overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
+        <div className='bg-black overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
           <div className='relative max-w-[160%]'>
             <img srcSet={g6} className='absolute md:w-[200px] w-[100px] md:left-[50px] left-[10px] top-[-70px] md:top-[-180px]' />
             <img srcSet={g3} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-115px] top-[-75px]' />

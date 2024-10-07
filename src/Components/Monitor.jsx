@@ -8,8 +8,8 @@ const Monitor = () => {
             <div className='flex justify-center flex-col'>
                 <div className='my-4'><h1 className='text-black text-2xl'>Monitor Dashboard</h1></div>
                 <div className='flex mb-4 justify-between'>
-                    <div><div className='text-black'>House number : <span className='text-black'>13/94</span></div></div>
-                    <div><div className='text-black'>Microgrid number :<span className='text-black'>F343</span></div></div>
+                    <div><div className='text-black'>House number :&nbsp;<span className='text-black'>13/94</span></div></div>
+                    <div><div className='text-black'>Microgrid number :&nbsp;<span className='text-black'>F343</span></div></div>
 
                 </div>
                 <div className='flex justify-around flex-wrap'>
