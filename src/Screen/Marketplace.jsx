@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import web3 from '../Web3';
+import web3 from '../web3';
 import MatchingContractABI from '../abi/MatchingContract.json';
 import TrackingContractABI from '../abi/TrackingContract.json';
 import EscrowContractABI from '../abi/EscrowContract.json';

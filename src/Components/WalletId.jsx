@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../../src/App.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const WalletId = ({ toggleSidebar }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -8,6 +9,15 @@ const WalletId = ({ toggleSidebar }) => {
     const handleDisconnect = () => {
         localStorage.removeItem("walletId");
         setWalletId(null); // Clear the wallet ID from the state
+        toast("Wallet Disconnected",
+            {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            }
+        );
     };
 
     const containerStyle = {
@@ -24,6 +34,8 @@ const WalletId = ({ toggleSidebar }) => {
 
     return (
         <div>
+            <Toaster
+                position="bottom-left" />
             <header className="z-10 flex fixed justify-start flex-nowrap w-full text-sm py-5 border-b-[1px] border-[#2e2e2e] bg-black backdrop-blur-none glasseffect">
                 <nav className="max-w-[85rem] w-full mx-auto px-4 flex items-center justify-between">
                     <div className="flex items-center justify-between">

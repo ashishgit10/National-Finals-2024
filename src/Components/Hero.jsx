@@ -16,6 +16,7 @@ import g4 from "/green/g4.webp";
 import g2 from "/green/g2.webp";
 import g6 from "/green/g6.webp";
 import g5 from "/green/g5.webp";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Hero = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,21 +26,21 @@ const Hero = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleDisconnect = async () => {
-    try {
-      await disconnectWallet();
-      console.log("Wallet disconnected successfully");
-      navigate('/');
-    } catch (error) {
-      console.error("Error disconnecting wallet", error);
-    }
-  };
+
 
   const handleConnectMetaMask = async () => {
     try {
       setLoading(true);
       await connectMetaMask(); // Connect wallet
-      // No navigation here
+      toast("Wallet Connected",
+        {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          },
+        }
+      );
     } catch (error) {
       console.error('Failed to connect MetaMask:', error);
     } finally {
@@ -60,7 +61,7 @@ const Hero = () => {
 
     try {
       await axios.post('/api/register', { userName, walletAddress });
-      navigate('/'); 
+      navigate('/');
     } catch (error) {
       console.error('Error registering user:', error);
       setError('Failed to register. Please try again.');
@@ -77,6 +78,8 @@ const Hero = () => {
 
   return (
     <div className=''>
+      <Toaster
+        position="bottom-left" />
       <div className='md:h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
         <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[20deg]' />
         <Navbar />
