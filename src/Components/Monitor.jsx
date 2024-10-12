@@ -1,133 +1,136 @@
 import React from 'react'
 import FlipNumbers from 'react-flip-numbers'
 
+import WeatherCard from './WeatherCard'
+import Chart from './Chart'
+import Chart2 from './Chart2'
+import cardbg from "/card/card.webp"
+import particle from "/card/particle.webp"
+
 const Monitor = () => {
     return (
-        <div className='max-w-screen-lg m-auto'>
+        <div className='flex justify-center lg:justify-normal flex-col lg:pl-72 z-8  lg:pt-20 rounded-lg'>
 
-            <div className='flex justify-center flex-col'>
-                <div className='my-4'><h1 className='text-black text-2xl'>Monitor Dashboard</h1></div>
-                <div className='flex mb-4 justify-between'>
-                    <div><div className='text-black'>House number :&nbsp;<span className='text-black'>13/94</span></div></div>
-                    <div><div className='text-black'>Microgrid number :&nbsp;<span className='text-black'>F343</span></div></div>
+            <div className='flex items-center  justify-center lg:justify-normal lg:items-center flex-wrap '>
+                <div className='flex max-h-max overflow-hidden z-99 relative  backdrop-blur-md rounded-3xl shadow-lg  flex-col'>
+                    <img srcSet={particle} className='absolute' />
+                    <div className='relative z-[2] px-3'>
+                        <div className='my-4'><h1 className='text-white text-2xl font-bold z-[2]'>Dashboard</h1></div>
+                        <div className='flex mb-4 justify-between '>
 
-                </div>
-                <div className='flex justify-around flex-wrap'>
-
-                    <div className="w-[250px] p-4  flex flex-col justify-start rounded-xl  bg-white/30 border-white border-2 backdrop-blur-md">
-                        <h1 className="mt-2 text-black font-bold text-left ">
-                            Total Production
-                        </h1>
-                        <h3 className="text-lg font-bold  text-black">
-                            <div className='flex text-4xl justify-start'>+
-                                <FlipNumbers numberStyle={{
-                                    fontSize: 26, justifyContent: "center"
-                                }} height={42} width={29} color="black" background="dark:text-black" play perspective={200} numbers="1" />
-                                <div className='text-black'>KWH</div>
-                            </div>
-                        </h3>
-                        <div>
-                            <p className='w-full border-b-[2px] border-b-orange-500 pb-3'></p>
+                            <div><div className='text-white z-20'>House number :&nbsp;<span className='text-white'>13/94</span></div></div>
+                            <div><div className='text-white z-20'>Microgrid number :&nbsp;<span className='text-white'>F343</span></div></div>
                         </div>
-                        <div> <h3 className='text-black'>Produce</h3></div>
 
                     </div>
+                    <div className='flex gap-4 justify-center flex-wrap px-3 pb-12'>
 
-                    <div className="w-[250px] p-4   flex flex-col justify-start rounded-xl bg-white/30 border-white border-2 backdrop-blur-md">
-                        <h1 className="mt-2 text-black font-bold text-left ">
-                            Total Consumption
-                        </h1>
-                        <h3 className="text-lg font-bold  text-black">
-                            <div className='flex text-4xl justify-start'>-
-                                <FlipNumbers numberStyle={{
-                                    fontSize: 26, justifyContent: "center"
-                                }} height={42} width={29} color="black" background="dark:text-black" play perspective={200} numbers="14" />
-                                <div className='text-black'>KWH</div>
-                            </div>
-                        </h3>
-                        <div>
-                            <p className='w-full border-b-[2px] border-b-blue-500 pb-3'></p>
-                        </div>
-                        <div> <h3 className='text-black'>Consume</h3></div>
-
-                    </div>
-
-                    <div className="w-[250px] p-4   flex flex-col justify-start rounded-xl bg-white/30 border-white border-2 backdrop-blur-md">
-                        <h1 className="mt-2 text-black font-bold text-left ">
-                            Tokens
-                        </h1>
-                        <h3 className="text-lg font-bold  text-black">
-                            <div className='flex text-4xl justify-start'>
-                                <FlipNumbers numberStyle={{
-                                    fontSize: 26, justifyContent: "center"
-                                }} height={42} width={29} color="black" background="dark:text-black" play perspective={200} numbers="1" />
-                                <div className='text-black'>Token</div>
-                            </div>
-                            <div>
-                                <h3 className='text-black'>1 Token = 0.01ETH</h3></div>
-
-
-                        </h3>
-                        <div>
-                            <p className='w-full border-b-[2px] border-b-yellow-500 pb-3'></p>
-                        </div>
-                        <div> <h3 className='text-black'>Tokens</h3></div>
-
-                    </div>
-
-                    <div className="w-[250px] p-4   flex flex-col justify-start rounded-xl bg-white/30 border-white border-2 backdrop-blur-md">
-                        <h1 className="mt-2 text-black font-bold text-left ">
-                            Surplus Energy
-                        </h1>
-                        <h3 className="text-lg font-bold  text-black">
-                            <div className='flex text-4xl justify-start'>-
-                                <FlipNumbers numberStyle={{
-                                    fontSize: 26, justifyContent: "center"
-                                }} height={42} width={29} color="black" background="dark:text-black" play perspective={200} numbers="14" />
-                                <div className='text-black'>KWH</div>
-                            </div>
-                        </h3>
-                        <div>
-                            <p className='w-full border-b-[2px] border-b-blue-500 pb-3'></p>
-                        </div>
-                        <div> <h3 className='text-black'>Surplus Energy</h3></div>
-
-                    </div>
-                </div>
-            </div>
-            {/*==========-----------2nd Section---------=============*/}
-            <div className='mt-10'>
-                <div className="w-[300px] p-4  flex flex-col justify-start rounded-xl  bg-white/30 border-white border-2 backdrop-blur-md">
-                    <div className='pb-3 border-b-[1px] flex justify-between items-center'>
-                        <div>
-                            <h1 className="text-lg font-bold  border-gray-700 text-black">
-                                Exchange
+                        <div className="w-[240px] p-4  flex flex-col justify-start rounded-xl  bg-black/15 border-orange-500 border-2 backdrop-blur-md">
+                            <h1 className="mt-2 text-white font-bold text-left ">
+                                Total Production
                             </h1>
-                        </div>
-                        <div>
-                            <div className='text-black'>Buy</div>
-                        </div>
-                    </div>
-                    <div>
-                        <div className='mt-4'>
-                            <div className="flex rounded-lg shadow-sm ">
-                                <input type="text" className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black disabled:opacity-50 disabled:pointer-events-none   dark:text-black dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
-                                <span className="px-4 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-sm text-black ">ETH</span>
+                            <h3 className="text-lg font-bold  text-white">
+                                <div className='flex text-4xl justify-start'>+
+                                    <FlipNumbers numberStyle={{
+                                        fontSize: 26, justifyContent: "center"
+                                    }} height={42} width={29} color="white" background="dark:text-white" play perspective={200} numbers="20" />
+                                    <div className='text-white'>KWH</div>
+                                </div>
+                            </h3>
+                            <div>
+                                <p className='w-full border-b-[2px] border-b-orange-500 pb-3'></p>
                             </div>
-                            <div className="flex rounded-lg shadow-sm mt-2">
-                                <input type="text" className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black disabled:opacity-50 disabled:pointer-events-none  dark:text-black dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
-                                <span className="px-2 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-xs text-black  ">Address</span>
+
+                            <div> <h3 className='text-white'>Produce</h3></div>
+                            <div>          <Chart />
                             </div>
                         </div>
-                        <div className='mt-2'>
-                            <div className='text-black text-sm'>1 ETH = <span className='text-sky-500'>218,791</span>&nbsp;INR</div>
-                            <div className='text-black text-sm'>Total fees: <span className='text-sky-500'>290</span>&nbsp;INR </div>
+
+                        <div className="w-[240px] p-4   flex flex-col justify-start rounded-xl bg-black/15 border-blue-500 border-2 backdrop-blur-md">
+                            <h1 className="mt-2 text-white font-bold text-left ">
+                                Total Consumption
+                            </h1>
+                            <h3 className="text-lg font-bold  text-white">
+                                <div className='flex text-4xl justify-start'>-
+                                    <FlipNumbers numberStyle={{
+                                        fontSize: 26, justifyContent: "center"
+                                    }} height={42} width={29} color="white" background="dark:text-white" play perspective={200} numbers="14" />
+                                    <div className='text-white'>KWH</div>
+                                </div>
+                            </h3>
+                            <div>
+                                <p className='w-full border-b-[2px] border-b-blue-500 pb-3'></p>
+                            </div>
+                            <div> <h3 className='text-white'>Consume</h3></div>
+                            <div>          <Chart />
+                            </div>
 
                         </div>
-                        <div>
-                            <button className='text-black text-[13px] bg-gradient-to-r from-orange-500 to-orange-300 rounded-sm w-full py-1 mt-4'>BUY</button>
+                        <div className="w-[240px] p-4   flex flex-col justify-start rounded-xl bg-black/15 border-yellow-500 border-2 backdrop-blur-md">
+                            <h1 className="mt-2 text-white font-bold text-left ">
+                                Surplus Energy
+                            </h1>
+                            <h3 className="text-lg font-bold  text-white">
+                                <div className='flex text-4xl justify-start'>+
+                                    <FlipNumbers numberStyle={{
+                                        fontSize: 26, justifyContent: "center"
+                                    }} height={42} width={29} color="white" background="dark:text-white" play perspective={200} numbers="6" />
+                                    <div className='text-white'>KWH</div>
+                                </div>
+                            </h3>
+                            <div>
+                                <p className='w-full border-b-[2px] border-b-yellow-500 pb-3'></p>
+                            </div>
+                            <div> <h3 className='text-white'>Surplus Energy</h3></div>
+                            <div>
+
+                                <Chart />
+                            </div>
                         </div>
+                        <div className="w-[240px] p-4   flex flex-col justify-start rounded-xl bg-black/15 border-blue-500 border-2 backdrop-blur-md">
+                            <h1 className="mt-2 text-white font-bold text-left ">
+                                Tokens
+                            </h1>
+                            <h3 className="text-lg font-bold  text-white">
+                                <div className='flex text-4xl justify-start'>
+                                    <FlipNumbers numberStyle={{
+                                        fontSize: 26, justifyContent: "center"
+                                    }} height={42} width={29} color="white" background="dark:text-white" play perspective={200} numbers="1" />
+                                    <div className='text-white'>Token</div>
+                                </div>
+                                <div>
+                                    <h3 className='text-white'>1 Token = 0.01ETH</h3></div>
+
+
+                            </h3>
+                            <div>
+                                <p className='w-full border-b-[2px] border-b-blue-500 pb-3'></p>
+                            </div>
+                            <div> <h3 className='text-white'>Tokens</h3></div>
+
+                        </div>
+
+
                     </div>
+                </div>
+             
+                        <WeatherCard />
+              
+            </div>
+            <div className='flex items-center justify-center lg:justify-normal lg:items-start flex-wrap '>
+
+                <div className='max-w-7xl max-h-[440px] flex shadow-lg bg-white/10 backdrop-blur-md mt-4 rounded-3xl  justify-center items-center '>
+                    <Chart2 />
+                </div>
+
+                <div className=" relative bg-white/10 overflow-hidden backdrop-blur-md mt-4 ml-4 p-8 rounded-3xl ">
+
+                    <div className=' justify-start items-center flex flex-col'>
+
+                        <h1 className='font-bold  text-white text-xl'>Load On MicroGrid</h1>
+                        <div className='text-4xl text-white  font-bold'><span>60</span>%</div>
+                    </div>
+                    <img className='w-44 object-cover relative z-[-1] bottom-[-2px] scale-150' srcSet={cardbg} />
                 </div>
             </div>
         </div>

@@ -1,0 +1,8 @@
+import ListingABI from '../ContractABI/listingcontractABI.json';
+import MatchingABI from '../ContractABI/MatchingContract.json';
+import EscrowABI from '../ContractABI/EscrowContract.json';
+
+
+const listingContractAddress = process.env.listingContractAddress;
+const matchingContractAddress = process.env.matchingContractAddress
+const escrowContractAddress = process.env.escrowContractAddress

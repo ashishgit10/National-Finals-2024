@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import dashbg from '/Bg/dash.jpg';
 import Web3 from 'web3';
-import ContractABI from '../ContractABI/contractABI.json'; // Make sure this path is correct
-const contractAddress = '0xd9145CCE52D386f254917e481eB44e9943F39138';
+import listingcontractABI from '../abi/ListingContract.json';
+import Sidebar from '../Components/Sidebar';
+import WalletId from '../Components/WalletId';
+import gridact from '/card/gridact.webp';
+import secure from '/card/secure.webp';
+import block from '/card/block.webp';
+
+
+const listingContractAddress = process.env.listingContractAddress;
 
 const Transaction = () => {
     const [data, setData] = useState({
@@ -11,11 +17,10 @@ const Transaction = () => {
         duration: ''
     });
 
-    const [buy, setBuy] = useState(true);
     const [account, setAccount] = useState('');
     const [web3, setWeb3] = useState(null);
     const [contract, setContract] = useState(null);
-    const [listings, setListings] = useState([]); // State to hold listings
+    const [listings, setListings] = useState([]);
 
     useEffect(() => {
         const loadWeb3 = async () => {
@@ -24,27 +29,32 @@ const Transaction = () => {
                 setWeb3(web3Instance);
                 const accounts = await web3Instance.eth.requestAccounts();
                 setAccount(accounts[0]);
-                const contractInstance = new web3Instance.eth.Contract(ContractABI, contractAddress);
+                const contractInstance = new web3Instance.eth.Contract(listingcontractABI, listingContractAddress);
                 setContract(contractInstance);
-                await fetchListings(contractInstance); // Fetch listings when the contract is set
+                await fetchListings(contractInstance);
             } else {
                 alert('Please install MetaMask to use this feature.');
             }
         };
-
         loadWeb3();
     }, []);
 
     const fetchListings = async (contractInstance) => {
-        const listingId = await contractInstance.methods.listingId().call();
-        const fetchedListings = [];
+        try {
+            const listingId = await contractInstance.methods.listingId().call();
+            console.log("Total listings:", listingId);
 
-        for (let i = 0; i < listingId; i++) {
-            const listing = await contractInstance.methods.getListing(i).call();
-            fetchedListings.push(listing);
+            const fetchedListings = [];
+            for (let i = 0; i < listingId; i++) {
+                const listing = await contractInstance.methods.getListing(i).call();
+                console.log(`Fetched Listing ${i}:`, listing);
+                fetchedListings.push(listing);
+            }
+
+            setListings(fetchedListings);
+        } catch (error) {
+            console.error("Error fetching listings:", error);
         }
-
-        setListings(fetchedListings);
     };
 
     const formData = async (e) => {
@@ -52,12 +62,13 @@ const Transaction = () => {
         if (contract) {
             try {
                 const { energy, amount, duration } = data;
-                await contract.methods.createListing(amount, energy, duration).send({
+                await contract.methods.createListing(parseInt(amount), parseInt(energy), parseInt(duration)).send({
                     from: account,
-                    gas: 2000000, // Adjust gas limit as necessary
+                    gas: 8000000,
                 });
                 console.log('Listing created successfully!');
-                await fetchListings(contract); // Refresh the listings after creating a new one
+                await fetchListings(contract);
+                setData({ energy: '', amount: '', duration: '' }); // Reset form fields
             } catch (error) {
                 console.error('Error creating listing:', error);
             }
@@ -73,74 +84,93 @@ const Transaction = () => {
     };
 
     return (
-        <div className='bg-white h-[100vh]'
-            style={{
-                backgroundImage: `url(${dashbg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                height: '100vh',
-                color: 'white'
-            }}
-        >
-            <div>
-                <form onSubmit={formData}>
-                    <div className="w-[300px] p-4 flex flex-col justify-start rounded-xl bg-white/30 border-white border-2 backdrop-blur-md">
-                        <div className='pb-3 border-b-[1px] flex justify-between items-center'>
-                            <h1 className="text-lg font-bold border-gray-700 text-black">Exchange</h1>
-                            <div className='flex border items-center py-1 px-2 rounded-lg gap-2'>
-                                <div onClick={() => setBuy(!buy)} className={`text-black border px-2 rounded-lg cursor-pointer ${buy ? "bg-white" : ""}`}>Buy</div>
-                                <div onClick={() => setBuy(!buy)} className={`text-black border px-2 rounded-lg cursor-pointer ${buy ? "" : "bg-white"}`}>Sell</div>
+        <div className='bg-black '>
+            <Sidebar />
+            <WalletId />
+            <div className='lg:pt-24 lg:pl-64'>
+                <div className='flex justify-evenly flex-wrap max-w-full'>
+                    <div className='flex flex-col flex-wrap mx-w-[50%]'>
+                        <form onSubmit={formData} className='p-4 rounded-xl bg-white/30 border-white border-1  backdrop-blur-md'>
+                            <h1 className="text-lg font-bold border-gray-700 text-black">Sell Energy</h1>
+                            <div className='mt-4'>
+                                <input type="number" name='energy' value={data.energy} onChange={handleData} placeholder="Energy (kWh)" className="py-2 px-3 bg-transparent border-2 block w-full border-white text-black font-bold rounded-md" />
+                                <input type="number" name='amount' value={data.amount} onChange={handleData} placeholder="Amount" className="py-2 px-3 mt-2 bg-transparent border-2 block w-full border-white text-black font-bold rounded-md" />
+                                <input type="number" name='duration' value={data.duration} onChange={handleData} placeholder="Duration (hours)" className="py-2 px-3 mt-2 bg-transparent border-2 block w-full border-white text-black font-bold rounded-md" />
+                                <button className='text-black bg-[#23f7dd] rounded-lg w-full py-1 mt-4' type='submit'>Sell</button>
                             </div>
-                        </div>
-                        <div className='mt-4'>
-                            <div className="flex rounded-lg shadow-sm">
-                                <input type="number" name='energy' value={data.energy} onChange={handleData} className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black" />
-                                <span className="px-4 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-sm text-black">Energy</span>
-                            </div>
-                            <div className="flex rounded-lg shadow-sm mt-2">
-                                <input type="number" name='amount' value={data.amount} onChange={handleData} className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black" />
-                                <span className="px-2 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-sm text-black">Address</span>
-                            </div>
-                            <div className="flex rounded-lg shadow-sm mt-2">
-                                <input type="number" name='duration' value={data.duration} onChange={handleData} className="py-2 px-3 pe-11 bg-transparent border-2 outline-none block w-full border-white shadow-sm rounded-s-md text-sm focus:z-10 focus:border-bltext-black focus:ring-bltext-black" />
-                                <span className="px-2 inline-flex items-center min-w-fit rounded-r-md border-2 border-l-0 border-white bg-transparent font-bold text-sm text-black">Duration</span>
-                            </div>
-                        </div>
-                        <div>
-                            <button className='text-black text-[13px] bg-gradient-to-r from-orange-500 to-orange-300 rounded-sm w-full py-1 mt-4' type='submit'>BUY</button>
+                        </form>
+
+                        <h2 className='text-lg font-bold text-white mt-4'>Active Energy Listings</h2>
+                        <div className="overflow-x-auto">
+                            <table className="min-w-full bg-white border border-gray-200 mt-2">
+                                <thead>
+                                    <tr>
+                                        <th className="py-2 px-4 border-b border-gray-200">Producer</th>
+                                        <th className="py-2 px-4 border-b border-gray-200">Energy (kWh)</th>
+                                        <th className="py-2 px-4 border-b border-gray-200">Amount (wei)</th>
+                                        <th className="py-2 px-4 border-b border-gray-200">Duration (hours)</th>
+                                        <th className="py-2 px-4 border-b border-gray-200">Active</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {listings.length > 0 ? (
+                                        listings.map((listing, index) => (
+                                            <tr key={index}>
+                                                <td className="px-4 py-2 border-b border-gray-200">{listing[0]}</td>
+                                                <td className="px-4 py-2 border-b border-gray-200">{listing[1].toString()} kWh</td>
+                                                <td className="px-4 py-2 border-b border-gray-200">{listing[2].toString()} wei</td>
+                                                <td className="px-4 py-2 border-b border-gray-200">{listing[3].toString()} hours</td>
+                                                <td className="px-4 py-2 border-b border-gray-200">{listing[4] ? "Yes" : "No"}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="5" className="text-center py-2">No active listings available.</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </form>
+                    <div className='text-white  max-w-[30%] overflow-hidden flex flex-col justify-center items-center'>
+                        <div className='relative flex justify-center bg-[#1a1a1a] items-center border border-zinc-700 rounded-3xl'>
+                            <div className=' absolute text-left text-white w-full p-10'>
+                                <div className='text-2xl text-left text-[#737373]'>Active Microgrids</div>
+                                <div className='text-right text-7xl text-[#23f7dd]'>56</div>
+                            </div>
 
-                {/* Display Listings */}
-                <div className='mt-4'>
-                    <h2 className='text-lg font-bold text-black'>Active Listings</h2>
-                    <ul className='list-disc pl-5'>
-                        {listings.map((listing, index) => (
-                            <li key={index} className='py-2'>
-                                <div>
-                                    <span className='font-bold'>Producer:</span> {listing[0]}
-                                </div>
-                                <div>
-                                    <span className='font-bold'>Amount:</span> {listing[1]}
-                                </div>
-                                <div>
-                                    <span className='font-bold'>Price:</span> {listing[2]}
-                                </div>
-                                <div>
-                                    <span className='font-bold'>Duration:</span> {listing[3]}
-                                </div>
-                                <div>
-                                    <span className='font-bold'>Active:</span> {listing[4] ? "Yes" : "No"}
-                                </div>
-                                <hr />
-                            </li>
-                        ))}
-                    </ul>
+                            <img srcSet={gridact} />
+                        </div>
+
+                        <div className='relative flex justify-center mt-6  overflow-hidden bg-[#1a1a1a] items-center border border-zinc-700 rounded-3xl'>
+                            <div className=' absolute text-left text-white w-full px-10 pt-28 pb-10 z-10'>
+                                <div className='text-2xl text-right text-white'>Decentralised</div>
+                                <div className='text-right text-3xl text-[#23f7dd]'>With</div>
+                                <div className='text-right text-6xl pb-6 text-[#23f7dd]'>Blockchain</div>
+                            </div>
+
+                            <img className='w-[45%] relative -left-20 -top-20' srcSet={block} />
+                        </div>
+
+                        <div className='relative flex justify-center mt-6 px-6 pt-8 pb-20 bg-[#1a1a1a] w-[75%]  border border-zinc-700 rounded-3xl'>
+                            <div className=' absolute text-white text-center w-full z-10'>
+                                <div className='text-2xl text-white'>Secure Transaction</div>
+                                <div className='text-2xl text-white'>with</div>
+                                <div className='text-2xl text-[#23f7dd]'>Escrow</div>
+                                
+                            </div>
+
+                            <img className='w-60 -bottom-28 relative' srcSet={secure} />
+
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default Transaction;

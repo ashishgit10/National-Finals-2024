@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import WalletId from '../Components/WalletId';
-import dashbg from '/Bg/dash.jpg';
+import dashbg from '/Bg/wallet.jpg';
 import Monitor from '../Components/Monitor';
 import Sidebar from '../Components/Sidebar';
 
@@ -44,17 +44,20 @@ const Dashboard = () => {
     };
 
     return (
-        <div className='bg-white h-[100vh]'
+        <div className=' '
             style={{
-                backgroundImage: `url(${dashbg})`,
+             /*    backgroundImage: `url(${dashbg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                height: '100vh',
-                color: 'white'
+                backgroundAttachment: 'fixed',  // Keeps the background fixed while scrolling
+                backgroundRepeat: 'no-repeat',
+                color: 'white', */
+                backgroundColor:"black"
+                
             }}
         >
-
-            {isSidebarOpen && <div className=''><Sidebar/></div>}
+            <div><Sidebar /></div>
+            {/*  {isSidebarOpen && <div className=''><Sidebar/></div>} */}
 
 
             <WalletId toggleSidebar={toggleSidebar} />

@@ -6,6 +6,7 @@ import Home from './Screen/Home'
 import RegisterWallet from './Components/RegisterWallet'
 import Dashboard from './Screen/Dashboard'
 import Transaction from './Screen/Transaction'
+import Marketplace from './Screen/Marketplace'
 
 
 
@@ -17,10 +18,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           {/* <Route path="/" element={<QRScanner />} /> */}
-          <Route exact path="/" element={<RegisterWallet />} />
-          <Route path="/home" element={<Home />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/transact" element={<Transaction />} />
+         {/*  <Route exact path="/" element={<RegisterWallet />} /> */}
+          <Route exact path="/" element={<Home />} />
+          <Route  path="/dashboard" element={<Dashboard />} />
+          <Route  path="/transact" element={<Transaction />} />
+          <Route  path="/buy" element={<Marketplace />} />
 
         </Routes>
       </BrowserRouter>
