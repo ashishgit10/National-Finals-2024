@@ -21,7 +21,7 @@ const WalletId = ({ toggleSidebar }) => {
     };
 
     const containerStyle = {
-        maxWidth: isHovered ? '400px' : '150px',
+        maxWidth: isHovered ? '400px' : '85px',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
         textOverflow: 'ellipsis',
@@ -30,6 +30,7 @@ const WalletId = ({ toggleSidebar }) => {
         backgroundColor: '#23f7dd',
         padding: '5px',
         borderRadius: '5px',
+        fontSize:"12px"
     };
 
     return (
@@ -41,23 +42,25 @@ const WalletId = ({ toggleSidebar }) => {
                     <div className="flex items-center justify-between">
                         <button
                             onClick={toggleSidebar}
-                            className="p-2 text-white bg-blue-500 rounded lg:hidden"
+                            className="p-2 text-white bg-neutral-700 rounded lg:hidden"
                         >
-                            Toggle Sidebar
+                         ☰ 
                         </button>
                     </div>
                     <div id="hs-navbar-example" className="hs-collapse overflow-hidden transition-all duration-300 basis-full grow block" aria-labelledby="hs-navbar-example-collapse">
                         <div className="flex gap-5 flex-row items-center justify-end ps-5">
                             <div className='flex items-center gap-3'>
-                                <h3 className='text-white'>ETH Wallet ID - </h3>
+                            <div className='flex items-center gap-3 border bg-neutral-700 border-gray-700 pl-2 rounded-lg'>
+                                <h3 className='text-white text-xs lg:text-sm'>ETH Wallet ID</h3>
                                 <div style={containerStyle}
                                     onMouseEnter={() => setIsHovered(true)}
                                     onMouseLeave={() => setIsHovered(false)}>{walletId}
                                 </div>
+                            </div>
                                 {walletId && (
                                     <button
                                         onClick={handleDisconnect}
-                                        className="p-2 text-white bg-[#2e2e2e] rounded"
+                                        className="p-2 text-white text-xs lg:text-sm bg-[#2e2e2e] rounded"
                                     >
                                         Disconnect MetaMask
                                     </button>

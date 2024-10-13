@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (<div>
     <div className={` ${open ? "translate-x-[-100%]" : "translate-x-[0%]"} md:!translate-x-[0%] transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-black lg:backdrop-filter-md  border-r-[1px] border-[#2e2e2e] pt-7 pb-10 overflow-y-auto   [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500`}>
       <div className='flex justify-end items-center px-8'>
-        <button className='text-white lg:hidden' onClick={() => setopen(!open)}> ☰ </button>
+        <button className='text-white text-lg lg:hidden' onClick={() => setopen(!open)}>x</button>
       </div>
 
       <nav className="hs-accordion-group p-6 mt-5 w-full flex flex-col flex-wrap" >
