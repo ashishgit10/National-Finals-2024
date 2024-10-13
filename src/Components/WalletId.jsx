@@ -51,7 +51,7 @@ const WalletId = ({ toggleSidebar }) => {
                         <div className="flex gap-5 flex-row items-center justify-end ps-5">
                             <div className='flex items-center gap-3'>
                             <div className='flex items-center gap-3 border bg-neutral-700 border-gray-700 pl-2 rounded-lg'>
-                                <h3 className='text-white text-xs lg:text-sm'>ETH Wallet ID</h3>
+                                <h3 className='text-white text-xs lg:text-sm'>Wallet ID</h3>
                                 <div style={containerStyle}
                                     onMouseEnter={() => setIsHovered(true)}
                                     onMouseLeave={() => setIsHovered(false)}>{walletId}

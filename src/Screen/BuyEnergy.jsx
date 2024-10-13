@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import web3 from '../web3';
-import MatchingContractABI from '../abi/MatchingContract.json';
-import TrackingContractABI from '../abi/TrackingContract.json';
-import EscrowContractABI from '../abi/EscrowContract.json';
 import Sidebar from '../Components/Sidebar';
 import WalletId from '../Components/WalletId';
 import toast, { Toaster } from 'react-hot-toast';
+
+import MatchingContractABI from '../abi/MatchingContract.json';
+import TrackingContractABI from '../abi/TrackingContract.json';
+import EscrowContractABI from '../abi/EscrowContract.json';
+
 
 const matchingContractAddress = process.env.matchingContractAddress;
 const escrowContractAddress = process.env.escrowContractAddress;
@@ -16,26 +18,53 @@ const BuyEnergy = () => {
     const [trackingContract, setTrackingContract] = useState(null);
     const [escrowContract, setEscrowContract] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [bidData, setBidData] = useState({});
+    const [escrowData, setEscrowData] = useState({});
+    const [transactionData, setTransactionData] = useState({});
+    const [DebugBatchMatch, setDebugBatchMatch] = useState({});
+    const [DebugFindMatch, setDebugFindMatch] = useState([]);
+    const [fetchBidDetails, setfetchBidDetails] = useState([]);
+
 
     const [data, setData] = useState({
         energy: '',
-        amount: '',
+        price: '',
         duration: '',
         producerAddress: '',
         transactionId: ""
     });
-    const [transactionId, setTransactionId] = useState("");
-    const [producerAddress, setProducerAddress] = useState("");
+    /*     useEffect(() => {
+            if (matchingContract) {
+                matchingContract.events.BidPlaced({}, async (error, event) => {
+                    if (!error) {
+                        await fetchBidDetails(event.returnValues.bidId);
+                    }
+                });
+            }
+        }, [matchingContract]); */
 
     useEffect(() => {
         const loadContracts = async () => {
-            const matching = new web3.eth.Contract(MatchingContractABI, matchingContractAddress);
-            const tracking = new web3.eth.Contract(TrackingContractABI, trackingContractAddress);
-            const escrow = new web3.eth.Contract(EscrowContractABI, escrowContractAddress);
+            try {
+                const matching = new web3.eth.Contract(MatchingContractABI, matchingContractAddress);
+                const tracking = new web3.eth.Contract(TrackingContractABI, trackingContractAddress);
+                const escrow = new web3.eth.Contract(EscrowContractABI, escrowContractAddress);
 
-            setMatchingContract(matching);
-            setTrackingContract(tracking);
-            setEscrowContract(escrow);
+                setMatchingContract(matching);
+                setTrackingContract(tracking);
+                setEscrowContract(escrow);
+            } catch (error) {
+                console.error("Error loading contracts", error);
+                toast("Error loading contracts",
+                    {
+                        style: {
+                            borderRadius: '10px',
+                            background: '#333',
+                            color: '#fff',
+                        },
+                    }
+                );
+            }
         };
         loadContracts();
     }, []);
@@ -48,29 +77,15 @@ const BuyEnergy = () => {
         }));
     };
     const Clear = async () => {
-        setData({ energy: '', amount: '', duration: '' });
+        setData({ energy: '', price: '', duration: '' });
     }
 
-    /*     const fetchBids = async (web3Instance) => {
-            try {
-                const matchingContract = new web3Instance.eth.Contract(MatchingABI, matchingContractAddress);
-                const bidCount = await matchingContract.methods.bidId().call(); // Get total bid count
-                const fetchedBids = [];
-    
-                for (let i = 0; i < bidCount; i++) {
-                    const bid = await matchingContract.methods.bids(i).call(); // Fetch each bid
-                    fetchedBids.push(bid);
-                }
-    
-                setBids(fetchedBids);
-            } catch (error) {
-                console.error("Error fetching bids:", error);
-            }
-        }; */
     const placeBid = async (e) => {
         e.preventDefault();
-        if (!amount || !price || !duration) {
-            toast.error("Please provide all inputs.",
+        const { energy, price, duration } = data;
+
+        if (!energy || !price || !duration) {
+            toast("Please provide all inputs.",
                 {
                     style: {
                         borderRadius: '10px',
@@ -83,20 +98,34 @@ const BuyEnergy = () => {
         }
 
         const accounts = await web3.eth.getAccounts();
-        const totalCost = web3.utils.toWei((amount * price).toString(), "ether");
+        const totalCost = web3.utils.toWei((energy * price).toString(), "wei");
+
         try {
-            await matchingContract.methods.placeBid(amount, price, duration).send({ from: accounts[0], value: totalCost });
-            toast("Bid placed successfully!",
-                {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                }
-            );
+            setLoading(true);
+            const gasEstimate = await matchingContract.methods.placeBid(energy, price, duration).estimateGas({
+                from: accounts[0],
+                value: totalCost,
+            });
+
+            const transaction = await matchingContract.methods.placeBid(energy, price, duration).send({
+                from: accounts[0],
+                value: totalCost,
+                gas: gasEstimate,
+            });
+            const fetchBidDetails = await transaction.events.BidPlaced.returnValues
+            setfetchBidDetails((prevDetails) => [...prevDetails, fetchBidDetails]);
+            console.log(fetchBidDetails)
+            console.log(transaction)
+
+            toast("Bid placed successfully!", {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
         } catch (error) {
-            console.error("Error placing bid", error);
+            console.error("Error placing bid", error.message);
             toast("Oops! Error placing bid",
                 {
                     style: {
@@ -106,13 +135,30 @@ const BuyEnergy = () => {
                     },
                 }
             );
+        } finally {
+            setLoading(false);
         }
     };
+
 
     const batchMatch = async () => {
         const accounts = await web3.eth.getAccounts();
         try {
-            await matchingContract.methods.batchMatch().send({ from: accounts[0] });
+            const gasEstimate = await matchingContract.methods.batchMatch().estimateGas({
+                from: accounts[0],
+            });
+            const transaction = await matchingContract.methods.batchMatch().send({
+                from: accounts[0],
+                gas: gasEstimate,
+            });
+            console.log("transact", transaction)
+
+            const DebugBatchMatch = await transaction.events.DebugBatchMatch.returnValues;
+            setDebugBatchMatch(DebugBatchMatch);
+            console.log("DebugBatchMatch", DebugBatchMatch)
+            const DebugFindMatch = await transaction.events.DebugFindMatch.returnValues;
+            setDebugFindMatch((prevDetails) => [...prevDetails, DebugFindMatch]);
+            console.log("DebugFindMatch", DebugFindMatch)
             toast.success("Batch match executed successfully!",
                 {
                     style: {
@@ -136,8 +182,11 @@ const BuyEnergy = () => {
             );
         }
     };
+    const markEnergyDelivered = async (e) => {
+        e.preventDefault()
+        const { producerAddress,
+            transactionId } = data;
 
-    const markEnergyDelivered = async () => {
         if (!transactionId) {
             toast("Please provide a transaction ID.",
                 {
@@ -150,24 +199,24 @@ const BuyEnergy = () => {
             );
             return;
         }
-
-        if (!producerAddress) {
-            toast("Please provide the producer's address.",
-                {
-                    style: {
-                        borderRadius: '10px',
-                        background: '#333',
-                        color: '#fff',
-                    },
-                }
-            );
+        if (!web3.utils.isAddress(producerAddress)) {
+            alert("Please provide a valid producer address.");
             return;
         }
 
         const accounts = await web3.eth.getAccounts();
         try {
             // Mark energy as delivered
-            await trackingContract.methods.markEnergyDelivered(transactionId).send({ from: accounts[0] });
+            const gasEstimate = await trackingContract.methods.markEnergyDelivered(transactionId).estimateGas({
+                from: accounts[0],
+            });
+
+            const deliverData = await trackingContract.methods.markEnergyDelivered(transactionId).send({
+                from: accounts[0],
+                gas: gasEstimate,
+            })
+            console.log(deliverData)
+            
             toast("Energy marked as delivered!",
                 {
                     style: {
@@ -178,8 +227,15 @@ const BuyEnergy = () => {
                 }
             );
 
+            const escrowGasEstimate = await escrowContract.methods.release(producerAddress).estimateGas({
+                from: accounts[0],
+            });
+
             // Release funds from escrow
-            await escrowContract.methods.release(producerAddress).send({ from: accounts[0] });
+            await escrowContract.methods.release(producerAddress).send({
+                from: accounts[0],
+                gas: escrowGasEstimate,
+            });
             toast("Funds released to producer!",
                 {
                     style: {
@@ -204,20 +260,17 @@ const BuyEnergy = () => {
             );
         }
     };
-
-
-    return (
-        <div className='bg-black h-screen'>
+    return (<>
+        <div className='bg-black h-[180vh]'>
             <Toaster
                 position="bottom-left" />
             <Sidebar />
             <WalletId />
 
             <div className='lg:pl-[280px] flex justify-center flex-col flex-wrap pt-[110px] lg:pt-[80px]'>
-                <div className='flex flex-col w-full lg:w-[50%]'>
-                    <h2 className='text-white'>Place Bid</h2>
-                    <form onSubmit={placeBid} className='p-4 w-full rounded-xl bg-white/30 border-1  backdrop-blur-md'>
-                        <h1 className="text-lg font-bold border-gray-700 text-white">Sell Energy</h1>
+                <div className='flex flex-col w-full lg:w-[30%]'>
+                    <form onSubmit={placeBid} className='p-4 w-full rounded-xl bg-neutral-700 border-1  backdrop-blur-md'>
+                        <h1 className="text-lg font-bold border-gray-700 text-white">Bid Energy</h1>
                         <div className='mt-4'>
                             <input
 
@@ -226,16 +279,16 @@ const BuyEnergy = () => {
                                 value={data.energy}
                                 onChange={handleData}
                                 placeholder="Energy (kWh)"
-                                className="py-2 px-3 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                                className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                                 disabled={loading}
                             />
                             <input
                                 type="number"
-                                name="amount"
-                                value={data.amount}
+                                name="price"
+                                value={data.price}
                                 onChange={handleData}
-                                placeholder="Amount"
-                                className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                                placeholder="Price"
+                                className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                                 disabled={loading}
                             />
                             <input
@@ -244,7 +297,7 @@ const BuyEnergy = () => {
                                 value={data.duration}
                                 onChange={handleData}
                                 placeholder="Duration (hours)"
-                                className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                                className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                                 disabled={loading}
                             />
                             <div className='flex justify-end'>
@@ -254,14 +307,43 @@ const BuyEnergy = () => {
                                         Clear
                                     </button>
                                     <button className='text-black bg-[#23f7dd] rounded-2xl text-[14px] w-full py-1 px-6 mt-4' type='submit' disabled={loading}>
-                                        {loading ? 'Processing...' : <span >Order</span>}
+                                        {loading ? 'Processing...' : <span >Bid</span>}
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <div className='my-3 border-[1px] p-4 bg-neutral-600 rounded-lg border-gray-700 w-full lg:w-[50%]'>
+                <h2 className='text-lg font-bold text-white mt-4'>Bid Match</h2>
+                <div className="overflow-x-auto  w-full lg:w-[30%] [&::-webkit-scrollbar]:h-2
+                             [&::-webkit-scrollbar-track]:bg-gray-100 
+                             [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:w-2">
+                    <table className=" min-w-full border-[1px] border-gray-700 rounded-lg mt-2">
+                        <thead className='bg-neutral-700'>
+                            <tr>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Energy (kWh)</th>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Price (wei)</th>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Duration (hours)</th>
+                            </tr>
+                        </thead>
+                        <tbody className='divide-y divide-gray-200 dark:divide-neutral-700'>
+                            {fetchBidDetails && fetchBidDetails.length > 0 ? (
+                                fetchBidDetails.map((bidData, index) => (
+                                    <tr key={index}>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{bidData.amount.toString()}</td>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{bidData.price.toString()}</td>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{bidData.duration.toString()}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="5" className="text-center text-white py-2">No Bids available.</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                <div className='my-3 border-[1px] p-4 bg-neutral-700 rounded-lg border-gray-700 w-full lg:w-[30%]'>
                     <h2 className='text-white'>Auto Match Energy</h2>
                     <span className='text-white text-xs'>Automatic matches energy which is available</span>
                     <div className='flex justify-end'>
@@ -271,24 +353,57 @@ const BuyEnergy = () => {
                         </div>
                     </div>
                 </div>
+                <div className="overflow-x-auto  w-full lg:w-[30%] [&::-webkit-scrollbar]:h-2
+                             [&::-webkit-scrollbar-track]:bg-gray-100 
+                             [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:w-2">
+                    <table className=" min-w-full border-[1px] border-gray-700 rounded-lg mt-2">
+                        <thead className='bg-neutral-700'>
+                            <tr>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Energy (kWh)</th>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Price (wei)</th>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Duration (hours)</th>
+                                <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Status</th>
 
-                <form onSubmit={markEnergyDelivered} className='p-4 w-full lg:w-[50%] rounded-xl bg-white/30 border-1  backdrop-blur-md'>
+                            </tr>
+                        </thead>
+                        <tbody className='divide-y divide-gray-200 dark:divide-neutral-700'>
+                            {DebugFindMatch && DebugFindMatch.length > 0 ? (
+                                DebugFindMatch.map((data, index) => (
+                                    <tr key={index}>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{data.listingPrice.toString()}</td>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{data.listingAmount.toString()}</td>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{data.listingDuration.toString()}</td>
+                                        <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{data.listingActive ? <div className='text-[#00ffae] font-bold'>Active</div> : <div className='text-red-600 font-bold'>Not Active</div>}</td>
+
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="5" className="text-center text-white py-2">No match available.</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <form onSubmit={markEnergyDelivered} className='p-4 w-full lg:w-[30%] rounded-xl bg-neutral-700 border-1  backdrop-blur-md'>
                     <h1 className="text-lg font-bold border-gray-700 text-white">Energy Delivered</h1>
                     <div className='mt-4'>
                         <input
                             type="text"
                             placeholder="Transaction ID"
-                            value={transactionId}
-                            onChange={(e) => setTransactionId(e.target.value)}
-                            className="py-2 px-3 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                            name='transactionId'
+                            value={data.transactionId}
+                            onChange={handleData} className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                             disabled={loading}
                         />
                         <input
                             type="text"
                             placeholder="Producer Address"
+                            name='producerAddress'
                             value={data.producerAddress}
-                            onChange={(e) => setProducerAddress(e.target.value)}
-                            className="py-2 px-3 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                            onChange={handleData} className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                             disabled={loading}
                         />
                         <div className='flex justify-end'>
@@ -304,9 +419,38 @@ const BuyEnergy = () => {
                         </div>
                     </div>
                 </form>
+
+                <div>
+                    <div>
+                        <h3 className="text-white">Escrow Status</h3>
+                        {escrowData && (
+                            <div>
+                                <p className="text-white">Locked Funds: {escrowData.lockedFunds}</p>
+                                <p className="text-white">Status: {escrowData.status}</p>
+                            </div>
+                        )}
+                    </div>
+                    <div>
+                        <h3 className="text-white">Delivery and Match Status</h3>
+                        {transactionData && (
+                            <div>
+                                <p className="text-white">Match Status: {transactionData.matchFound ? "Matched" : "Not matched"}</p>
+                                <p className="text-white">Delivery Status: {transactionData.isDelivered ? "Delivered" : "Pending"}</p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+
+
             </div>
+
+
+
         </div>
+    </>
     );
 };
 
 export default BuyEnergy;
+`+`

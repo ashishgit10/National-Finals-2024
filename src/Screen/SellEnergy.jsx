@@ -123,9 +123,9 @@ const SellEnergy = () => {
             <Sidebar />
             <WalletId />
             <div className='lg:pt-24 lg:pl-64'>
-                <div className='flex justify-evenly flex-wrap max-w-full'>
-                    <div className='flex flex-col flex-wrap max-w-[65%]'>
-                        <form onSubmit={formData} className='p-4 w-[50%] rounded-xl bg-white/30 border-1  backdrop-blur-md'>
+                <div className='flex lg:justify-evenly justify-center flex-wrap lg:max-w-full'>
+                    <div className='flex flex-col flex-wrap lg:max-w-[65%]'>
+                        <form onSubmit={formData} className='p-4 lg:w-[50%] rounded-xl bg-neutral-700 border-1 '>
                             <h1 className="text-lg font-bold border-gray-700 text-white">Sell Energy</h1>
                             <div className='mt-4'>
                                 <input
@@ -134,7 +134,7 @@ const SellEnergy = () => {
                                     value={data.energy}
                                     onChange={handleData}
                                     placeholder="Energy (kWh)"
-                                    className="py-2 px-3 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                                    className="py-2 px-3 bg-transparent placeholder:text-neutral-500 border-b-[1px] border-b-[#23f7dd]  w-full text-white "
                                     disabled={loading} // Disable input during loading
                                 />
                                 <input
@@ -143,7 +143,7 @@ const SellEnergy = () => {
                                     value={data.amount}
                                     onChange={handleData}
                                     placeholder="Amount"
-                                    className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                                    className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                                     disabled={loading} // Disable input during loading
                                 />
                                 <input
@@ -152,7 +152,7 @@ const SellEnergy = () => {
                                     value={data.duration}
                                     onChange={handleData}
                                     placeholder="Duration (hours)"
-                                    className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-gray-300 block w-full text-white outline-none  "
+                                    className="py-2 px-3 mt-2 bg-transparent border-b-[1px] border-b-[#23f7dd]  block w-full text-white outline-none  "
                                     disabled={loading} // Disable input during loading
                                 />
                                 <div className='flex justify-end'>
@@ -180,7 +180,7 @@ const SellEnergy = () => {
                              [&::-webkit-scrollbar-track]:bg-gray-100 
                              [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:w-2">
                             <table className=" min-w-full border-[1px] border-gray-700 rounded-lg mt-2">
-                                <thead className='bg-gray-500 dark:bg-neutral-700'>
+                                <thead className='bg-neutral-700'>
                                     <tr>
                                         <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Producer</th>
                                         <th className="py-2 px-4 text-xs text-gray-200 uppercase dark:text-neutral-400">Energy (kWh)</th>
@@ -202,38 +202,38 @@ const SellEnergy = () => {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan="5" className="text-center py-2">No active listings available.</td>
+                                            <td colSpan="5" className="text-center text-white py-2">No active energy available.</td>
                                         </tr>
                                     )}
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div className='text-white max-w-[30%] overflow-hidden flex flex-col justify-center items-center'>
-                        <div className='relative flex justify-center bg-[#1a1a1a] items-center border border-zinc-700 rounded-3xl'>
-                            <div className='absolute text-left text-white w-full p-10'>
+                    <div className='text-white lg:max-w-[30%] overflow-hidden flex flex-col justify-center items-center'>
+                        <div className='relative w-full flex justify-center bg-[#1a1a1a] items-center border border-zinc-700 rounded-3xl'>
+                            <div className='absolute text-left text-white w-full px-8'>
                                 <div className='text-2xl text-left text-[#737373]'>Active Microgrids</div>
                                 <div className='text-right text-7xl text-[#23f7dd]'>56</div>
                             </div>
-                            <img srcSet={gridact} />
+                            <img className='object-cover' srcSet={gridact} />
                         </div>
 
-                        <div className='relative flex justify-center mt-6 overflow-hidden bg-[#1a1a1a] items-center border border-zinc-700 rounded-3xl'>
-                            <div className='absolute text-left text-white w-full px-10 pt-28 pb-10 z-10'>
+                        <div className='relative w-full flex justify-center mt-6 overflow-hidden bg-[#1a1a1a] items-center border border-zinc-700 rounded-3xl'>
+                            <div className=' flex flex-col px-4 py-6 text-left text-white w-full z-10'>
                                 <div className='text-2xl text-right text-white'>Decentralised</div>
                                 <div className='text-right text-3xl text-[#23f7dd]'>With</div>
-                                <div className='text-right text-6xl pb-6 text-[#23f7dd]'>Blockchain</div>
+                                <div className='text-right text-6xl text-[#23f7dd]'>Blockchain</div>
                             </div>
-                            <img className='w-[45%] relative -left-20 -top-20' srcSet={block} />
+                            <img className='w-[45%] absolute object-cover left-6 -top-20' srcSet={block} />
                         </div>
 
-                        <div className='relative flex justify-center mt-6 px-6 pt-8 pb-20 bg-[#1a1a1a] w-[75%] border border-zinc-700 rounded-3xl'>
-                            <div className='absolute text-white text-center w-full z-10'>
-                                <div className='text-2xl text-white'>Secure Transaction</div>
-                                <div className='text-2xl text-white'>with</div>
-                                <div className='text-2xl text-[#23f7dd]'>Escrow</div>
+                        <div className='relative overflow-hidden w-full min-h-80 px-2 py-4 flex justify-center mt-6 bg-[#1a1a1a] border border-zinc-700 rounded-3xl'>
+                            <div className='flex flex-col text-white text-center w-full z-10'>
+                                <div className='text-3xl text-white'>Secure Transaction</div>
+                                <div className='text-3xl text-white'>with</div>
+                                <div className='text-3xl text-[#23f7dd]'>Escrow</div>
                             </div>
-                            <img className='w-60 -bottom-28 relative' srcSet={secure} />
+                            <img className='w-60 -bottom-12 absolute object-cover' srcSet={secure} />
                         </div>
                     </div>
                 </div>
