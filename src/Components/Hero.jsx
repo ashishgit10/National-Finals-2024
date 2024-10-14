@@ -81,7 +81,7 @@ const Hero = () => {
       <Toaster
         position="bottom-left" />
       <div className='md:h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
-        <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[20deg]' />
+        <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[190deg]' />
         <Navbar />
         <div className='bg-black overflow-hidden m-auto mx-3 rounded-3xl'>
           <div className='pt-56 relative md:h-screen'>
@@ -91,14 +91,14 @@ const Hero = () => {
               <img srcSet={blurimg2} className='absolute w-[400px] top-60 rotate-[-50deg] right-[-145px]' />
             </div>
             <div className='relative z-10'>
-              <span className='md:text-6xl text-5xl md:pb-4 mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
+              <span className='md:text-6xl text-5xl mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
                 Revolutionizing
                 <span className=''>Energy Trading</span>
               </span>
               <div className='pb-4 px-7 flex justify-center items-center flex-col'>
-                <h2 className='text-center text-white md:text-xl text-md'>Empowering Individuals and Communities</h2>
-                <span className='text-center text-white md:text-xl text-md mb-5'>
-                  to Trade Energy Seamlessly and Securely
+                <h2 className='text-center text-neutral-400 md:text-xl text-md'>Trade, Track, and Manage Energy</h2>
+                <span className='text-center text-neutral-400 md:text-xl text-md mb-5'>
+                  in a Decentralized Marketplace
                 </span>
                 <div className='flex justify-center items-center gap-2'>
                   <button onClick={handleGoToDashboard} type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg text-gray-800 shadow-sm hover:shadow-2xl shadow-[#23f7dd] focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-[#23f7dd]">
@@ -113,10 +113,10 @@ const Hero = () => {
                     className="px-4 py-3 text-sm bg-[#2e2e2e] text-white rounded-lg"
                     disabled={loading}
                   >
-                    {loading ?  <svg aria-hidden="true" class="w-6 h-6 text-transparent animate-spin dark:text-gray-600 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
-                                                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
-                                                </svg> : walletAddress ? 'Wallet Connected' : "Connect Wallet"}
+                    {loading ? <svg aria-hidden="true" class="w-6 h-6 text-transparent animate-spin dark:text-gray-600 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
+                    </svg> : walletAddress ? 'Wallet Connected' : "Connect Wallet"}
                   </button>
                 </div>
               </div>
@@ -127,9 +127,18 @@ const Hero = () => {
       </div>
       <div>
         <div className='bg-black overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
-          <div className='relative max-w-[160%]'>
-            <img srcSet={g6} className='absolute md:w-[200px] w-[100px] md:left-[50px] left-[10px] top-[-70px] md:top-[-180px]' />
-            <img srcSet={g3} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-115px] top-[-75px]' />
+          <div className='relative text-center max-w-[160%]'>
+            <div className='w-full absolute z-10 top-[-250px]'>
+              <h1 className='text-white font-semibold text-[50px]'>Our Carbon Neutral Pledge</h1>
+              <div className='flex justify-center items-center'>
+              <h3 className='w-[48%] text-[20px] text-neutral-400'>Prioritizing Clean Energy Sources for a Carbon-Neutral Marketplace</h3>
+              </div>
+            </div>
+            <img srcSet={g6} className='absolute md:w-[135px] w-[100px] md:left-[145px] left-[10px] top-[-70px] md:top-[-80px]' />
+            <img srcSet={g3} className='absolute md:w-[195px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-34238/ px] top-[-75px]' />
+            <img srcSet={g5} className='absolute md:w-[225px] w-[100px] md:left-[-30px] left-[10px] top-[-70px] md:top-[-275px]' />
+            <img srcSet={g4} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-300px] top-[-75px]' />
+
             <div className='bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61)] py-6 m-auto md:max-w-[95%] rounded-3xl'>
               <div className='flex items-center relative justify-center'>
                 <div className='absolute text-white z-[20]'>

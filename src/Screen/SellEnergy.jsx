@@ -193,11 +193,11 @@ const SellEnergy = () => {
                                     {listings.length > 0 ? (
                                         listings.map((listing, index) => (
                                             <tr key={index}>
-                                                <td className="px-4 text-center py-2 text-sm text-gray-800 dark:text-neutral-200 max-w-xs overflow-hidden text-ellipsis whitespace-nowrap">{listing[0]}</td>
-                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{listing[2].toString()}</td>
-                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{listing[1].toString()}</td>
-                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{listing[3].toString()}</td>
-                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{listing[4] ? <div className='text-green-600 font-bold'>Active</div> : <div className='text-red-600 font-bold'>Not Active</div>}</td>
+                                                <td className="px-4 text-center py-2 text-sm text-neutral-200 max-w-xs overflow-hidden text-ellipsis whitespace-nowrap">{listing[0]}</td>
+                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{listing[2].toString()}</td>
+                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{listing[1].toString()}</td>
+                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{listing[3].toString()}</td>
+                                                <td className="px-4 text-center py-2 whitespace-nowrap text-sm text-neutral-200">{listing[4] ? <div className='text-green-600 font-bold'>Active</div> : <div className='text-red-600 font-bold'>Not Active</div>}</td>
                                             </tr>
                                         ))
                                     ) : (

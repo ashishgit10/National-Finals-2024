@@ -33,14 +33,15 @@ export const Navbar = () => {
         navigate("/dashboard")
     }
     return (
-        <div> <header className="">
-            <nav aria-label="Global" className="flex fixed z-[99] w-full rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
+      
+         <header className="fixed z-[99] w-full flex justify-center ">
+            <nav aria-label="Global" className="flex  w-[96%] rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
 
                 <div className="flex z-[99] lg:hidden ">
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(true)}
-                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-black"
+                        className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
                     >
                         <span className="sr-only">Open main menu</span>
                         <Bars3Icon aria-hidden="true" className="h-6 w-6" />
@@ -109,7 +110,8 @@ export const Navbar = () => {
                     </div>
                 </DialogPanel>
             </Dialog>
-        </header></div>
+        </header>
+      
     )
 }
 

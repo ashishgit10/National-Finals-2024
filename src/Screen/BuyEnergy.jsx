@@ -8,7 +8,6 @@ import MatchingContractABI from '../abi/MatchingContract.json';
 import TrackingContractABI from '../abi/TrackingContract.json';
 import EscrowContractABI from '../abi/EscrowContract.json';
 
-
 const matchingContractAddress = process.env.matchingContractAddress;
 const escrowContractAddress = process.env.escrowContractAddress;
 const trackingContractAddress = process.env.trackingContractAddress;
@@ -216,7 +215,7 @@ const BuyEnergy = () => {
                 gas: gasEstimate,
             })
             console.log(deliverData)
-            
+
             toast("Energy marked as delivered!",
                 {
                     style: {
@@ -232,10 +231,11 @@ const BuyEnergy = () => {
             });
 
             // Release funds from escrow
-            await escrowContract.methods.release(producerAddress).send({
+            const escrowfund = await escrowContract.methods.release(producerAddress).send({
                 from: accounts[0],
                 gas: escrowGasEstimate,
             });
+            console.log(escrowfund)
             toast("Funds released to producer!",
                 {
                     style: {
@@ -266,7 +266,6 @@ const BuyEnergy = () => {
                 position="bottom-left" />
             <Sidebar />
             <WalletId />
-
             <div className='lg:pl-[280px] flex justify-center flex-col flex-wrap pt-[110px] lg:pt-[80px]'>
                 <div className='flex flex-col w-full lg:w-[30%]'>
                     <form onSubmit={placeBid} className='p-4 w-full rounded-xl bg-neutral-700 border-1  backdrop-blur-md'>
@@ -385,8 +384,6 @@ const BuyEnergy = () => {
                         </tbody>
                     </table>
                 </div>
-
-
                 <form onSubmit={markEnergyDelivered} className='p-4 w-full lg:w-[30%] rounded-xl bg-neutral-700 border-1  backdrop-blur-md'>
                     <h1 className="text-lg font-bold border-gray-700 text-white">Energy Delivered</h1>
                     <div className='mt-4'>
@@ -419,7 +416,6 @@ const BuyEnergy = () => {
                         </div>
                     </div>
                 </form>
-
                 <div>
                     <div>
                         <h3 className="text-white">Escrow Status</h3>
@@ -440,13 +436,7 @@ const BuyEnergy = () => {
                         )}
                     </div>
                 </div>
-
-
-
             </div>
-
-
-
         </div>
     </>
     );
