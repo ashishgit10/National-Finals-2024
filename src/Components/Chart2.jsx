@@ -1,7 +1,30 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Chart2({ production, consumption }) {
+  const [loading, setLoading] = useState(true);
+
+  // Simulate a 3-second loading delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ width: '900px', height: '300px' }}>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <Skeleton height="300px" />
+        </SkeletonTheme>
+      </div>
+    );
+  }
+
   return (
     <LineChart
       sx={{
@@ -27,15 +50,12 @@ export default function Chart2({ production, consumption }) {
         "& .MuiChartsLegend-root .MuiTypography-root": { // Target legend label text specifically
           color: "#ffffff"
         }
-
       }}
       xAxis={[{ data: Array.from({ length: production.length }, (_, i) => i + 1) }]} // Dynamic x-axis labels
       series={[
         { curve: "natural", data: production, label: "Production (kWh)" },
         { curve: "natural", data: consumption, label: "Consumption (kWh)" },
       ]}
-
-
       width={900}
       height={300}
     />

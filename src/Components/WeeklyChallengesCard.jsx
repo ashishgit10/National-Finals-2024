@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nft from './Nft';
 import Progress from './Progress';
 import n1 from '/nft/n1.webp'
 import toast, { Toaster } from 'react-hot-toast';
 import { ToastToggle } from 'flowbite-react';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const WeeklyChallengesCard = () => {
     const [tasks, setTasks] = useState([
         { id: 1, title: "List 100 KWH Energy", completed: false },
         { id: 2, title: "Reduce 5 kg of CO₂ emissions", completed: false },
     ]);
-
+    const [loading, setLoading] = useState(true);
     const handleTaskCompletion = (id) => {
         setTasks(tasks.map(task =>
             task.id === id ? { ...task, completed: !task.completed } : task
@@ -29,6 +30,14 @@ const WeeklyChallengesCard = () => {
         }
     };
 
+    useEffect(() => {
+        // Simulate loading for 3 seconds
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+
+        return () => clearTimeout(timer); // Clean up timer on unmount
+    }, []);
     return (
         <>
             <Toaster
@@ -45,21 +54,39 @@ const WeeklyChallengesCard = () => {
                         <div className='mt-4'>
                             <h1 className="text-lg mb-2">Task</h1>
                             <div className="border border-[#0e9f6e] my-2"></div>
-                            <ul className="list-disc list-inside ml-4 space-y-2">
-                                {tasks.map(task => (
-                                    <li key={task.id} className="flex text-xl items-center">
-                                        <span className={task.completed ? "line-through" : ""}>{task.title}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                            <SkeletonTheme baseColor="#202020" highlightColor="#444">
+                                <ul className="list-disc list-inside ml-4 space-y-2">
+                                    {loading ? (
 
-                            <button
+                                        <>
+                                            <Skeleton height={30} width={200} />
+                                            <Skeleton height={30} width={250} />
+                                        </>
+                                    ) : (
+
+                                        tasks.map(task => (
+                                            <li key={task.id} className="flex text-xl items-center">
+                                                <div className='bg-neutral-900'>
+                                                    <span className={task.completed ? "line-through" : ""}>
+                                                        {task.title}
+                                                    </span>
+                                                </div>
+                                                {/*   <button onClick={() => handleTaskCompletion(task.id)} className="ml-2">
+                                                    {task.completed ? "Undo" : "Complete"}
+                                                </button> */}
+                                            </li>
+                                        ))
+                                    )}
+                                </ul>
+                            </SkeletonTheme>
+
+                            {/*      <button
                                 onClick={claimNFT}
                                 className={`text-black bg-green-300 rounded-2xl text-[14px] w-full py-2 mt-4 ${areAllTasksCompleted ? "opacity-100" : "opacity-50"}`}
                                 disabled={!areAllTasksCompleted}
                             >
                                 {areAllTasksCompleted ? "Claim NFT Reward!" : "Completed All Tasks"}
-                            </button>
+                            </button> */}
                         </div>
                     </div>
 

@@ -63,20 +63,19 @@ const Quest = () => {
       <WalletId />
       <div className='lg:pl-[280px] flex justify-center flex-col flex-wrap pt-[110px] lg:pt-[80px]'>
 
-        <div className='text-white flex flex-col gap-3 w-full'>
-          <div className='flex gap-3'>
+        <div className='text-white flex flex-col flex-wrap2 gap-3 w-full'>
+          <div className='flex gap-3 flex-wrap'>
             <QuestCard />
-
             <CarbonSavingsCard />
           </div>
 
-          <div className='flex gap-3'>
+          <div className='flex gap-3 flex-wrap'>
             <WeeklyChallengesCard />
             <MonthlyChallengesCard />
           </div>
 
 
-     {/*      <div className='flex flex-wrap mt-3 flex-col'>
+          {/*      <div className='flex flex-wrap mt-3 flex-col'>
             <h1 className='text-2xl py-3'>NFT Rewards</h1>
             <div className='flex flex-wrap gap-3'>
               {
