@@ -80,9 +80,41 @@ const Hero = () => {
     <div className=''>
       <Toaster
         position="bottom-left" />
+           <Navbar />
+           <div className='bg-black overflow-hidden md:h-[120vh] relative z-0 md:pt-96 pt-32 pb-[50rem]'>
+          <div className='relative text-center max-w-[160%]'>
+            <div className='w-full absolute z-10 top-[-250px]'>
+              <h1 className='text-white font-semibold text-[50px]'>Revolutionizing Energy Trading</h1>
+              <div className='flex justify-center items-center'>
+              <h3 className='w-[48%] text-[20px] text-neutral-400'>Prioritizing Clean Energy Sources for a Carbon-Neutral Marketplace</h3>
+              </div>
+            </div>
+            <img srcSet={g6} className='absolute md:w-[135px] w-[100px] md:left-[145px] left-[10px] top-[-70px] md:top-[-80px]' />
+            <img srcSet={g3} className='absolute md:w-[195px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-9px] top-[-75px]' />
+            <img srcSet={g5} className='absolute md:w-[225px] w-[100px] md:left-[-30px] left-[10px] top-[-70px] md:top-[-275px]' />
+            <img srcSet={g4} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-300px] top-[-75px]' />
+
+            <div className='bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61)] py-6 m-auto md:max-w-[95%] rounded-3xl'>
+              <div className='flex items-center relative justify-center'>
+                <div className='absolute text-white z-[20]'>
+                  <h1 className='lg:text-3xl text-4xl md:leading-[70px] font-medium'>Our<br/>Carbon Neutral Pledge</h1>
+                </div>
+                <div className='flex items-center relative justify-center md:w-[70%] h-full'>
+                  <img className='md:w-[65%] max-w-[110%] z-[2] animate-spin-slow-1 opacity-[0.90] mix-blend-normal' srcSet={globe} />
+                  <img className='md:w-[85%] max-w-[140%] z-[2] absolute animate-spin-slow' srcSet={ring} />
+                  <img className='md:w-[85%] max-w-[140%] z-[2] absolute' srcSet={orbit} />
+                </div>
+                <div className='absolute z-[1] bg-green-500 md:w-[45%] w-[105%] h-full rounded-[100%] md:blur-[20px] blur-[70px] opacity-90'></div>
+                <div className='absolute z-[1] bg-green-500 md:w-[45%] w-[125%] h-full rounded-[100%] md:blur-[150px] blur-[40px] opacity-90 '></div>
+              </div>
+            </div>
+          </div>
+        </div>
+   
+      <div>
       <div className='md:h-screen z-[1] overflow-hidden bg-black pt-5 relative'>
         <img srcSet={hero} className='z-[-1] md:w-[80%] scale-[2] absolute md:top-[-20rem] top-[-20px] bottom-full md:bottom-full rotate-[190deg]' />
-        <Navbar />
+       
         <div className='bg-black overflow-hidden m-auto mx-3 rounded-3xl'>
           <div className='pt-56 relative md:h-screen'>
             <div className='w-full'>
@@ -93,7 +125,7 @@ const Hero = () => {
             <div className='relative z-10'>
               <span className='md:text-6xl text-5xl mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
                 Revolutionizing
-                <span className=''>Energy Trading</span>
+                <span className=''>Energy Trading Our Carbon Neutral Pledge</span>
               </span>
               <div className='pb-4 px-7 flex justify-center items-center flex-col'>
                 <h2 className='text-center text-neutral-400 md:text-xl text-md'>Trade, Track, and Manage Energy</h2>
@@ -125,36 +157,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div className='bg-black overflow-hidden md:h-[120vh] relative z-0 md:pt-72 pt-32 pb-[50rem]'>
-          <div className='relative text-center max-w-[160%]'>
-            <div className='w-full absolute z-10 top-[-250px]'>
-              <h1 className='text-white font-semibold text-[50px]'>Our Carbon Neutral Pledge</h1>
-              <div className='flex justify-center items-center'>
-              <h3 className='w-[48%] text-[20px] text-neutral-400'>Prioritizing Clean Energy Sources for a Carbon-Neutral Marketplace</h3>
-              </div>
-            </div>
-            <img srcSet={g6} className='absolute md:w-[135px] w-[100px] md:left-[145px] left-[10px] top-[-70px] md:top-[-80px]' />
-            <img srcSet={g3} className='absolute md:w-[195px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-34238/ px] top-[-75px]' />
-            <img srcSet={g5} className='absolute md:w-[225px] w-[100px] md:left-[-30px] left-[10px] top-[-70px] md:top-[-275px]' />
-            <img srcSet={g4} className='absolute md:w-[250px] w-[140px] z-[-1] md:right-[-30px] right-[-30px] md:top-[-300px] top-[-75px]' />
-
-            <div className='bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61)] py-6 m-auto md:max-w-[95%] rounded-3xl'>
-              <div className='flex items-center relative justify-center'>
-                <div className='absolute text-white z-[20]'>
-                  <h1 className='lg:text-[70px] text-5xl md:leading-[70px] font-medium'>Future-Proof<br /> in Every Way</h1>
-                </div>
-                <div className='flex items-center relative justify-center md:w-[70%] h-full'>
-                  <img className='md:w-[65%] max-w-[110%] z-[2] animate-spin-slow-1 opacity-[0.90] mix-blend-normal' srcSet={globe} />
-                  <img className='md:w-[85%] max-w-[140%] z-[2] absolute animate-spin-slow' srcSet={ring} />
-                  <img className='md:w-[85%] max-w-[140%] z-[2] absolute' srcSet={orbit} />
-                </div>
-                <div className='absolute z-[1] bg-green-500 md:w-[45%] w-[105%] h-full rounded-[100%] md:blur-[20px] blur-[70px] opacity-90'></div>
-                <div className='absolute z-[1] bg-green-500 md:w-[45%] w-[125%] h-full rounded-[100%] md:blur-[150px] blur-[40px] opacity-90 '></div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

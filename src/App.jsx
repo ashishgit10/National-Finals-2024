@@ -4,6 +4,7 @@ import Home from './Screen/Home'
 import Dashboard from './Screen/Dashboard'
 import SellEnergy from './Screen/SellEnergy'
 import BuyEnergy from './Screen/BuyEnergy'
+import Quest from './Screen/Quest'
 
 
 const App = () => {
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/transact" element={<SellEnergy />} />
           <Route path="/buy" element={<BuyEnergy />} />
+          <Route path="/quest" element={<Quest />} />
+
         </Routes>
       </BrowserRouter>
     </>
