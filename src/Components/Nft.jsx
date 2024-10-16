@@ -1,7 +1,7 @@
 import React from 'react';
+import n1 from '/nft/n7.webp'
 
-
-export default function Nft({ data }) {
+export default function Nft({ img }) {
   return (
     <div
       className='!bg-transparent max-w-56 !rounded-xl'
@@ -10,7 +10,7 @@ export default function Nft({ data }) {
 
 
         <div>
-          <img srcSet={data} />
+          <img srcSet={img} />
         </div>
         {/*   <CardContent>
         <Typography className='text-white' gutterBottom variant="h5" component="div">
@@ -21,7 +21,7 @@ export default function Nft({ data }) {
           species, ranging across all continents except Antarctica
         </Typography>
       </CardContent> */}
-        <div className='bg-[#23f7dd] text-black px-4 mt-4 rounded-xl py-1 text-center w-[90%] m-auto' size="small">Unlock Reward</div>
+        <div className='hover:bg-[#23f7dd] bg-neutral-900 border hover:border-none text-white hover:text-black transition-all px-4 mt-4 rounded-lg py-1 text-center w-[90%] m-auto' size="small">Claim <span>🔒</span></div>
       </div>
     </div>
   );

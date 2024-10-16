@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import { MdDashboard } from "react-icons/md";
+import { MdEnergySavingsLeaf } from "react-icons/md";
+import { GrConnect } from "react-icons/gr";
+import { FaGift } from "react-icons/fa6";
 
 
 const Sidebar = () => {
@@ -13,34 +17,34 @@ const Sidebar = () => {
       <nav className="hs-accordion-group p-6 mt-5 w-full flex flex-col flex-wrap" >
         <ul className="space-y-1.5">
           <li className='text-white'>
-            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg dark:text-white" href="/">
+            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/">
               <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
               <span className='text-white'>Home</span>
             </a>
           </li>
 
           <li className='text-white'>
-            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg dark:text-white" href="/dashboard">
-              <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/dashboard">
+              <MdDashboard />
               <span className='text-white'>Dashboard</span>
             </a>
           </li>
 
           <li className='text-white'>
-            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg dark:text-white" href="/transact">
-              <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="15" r="3" /><circle cx="9" cy="7" r="4" /><path d="M10 15H6a4 4 0 0 0-4 4v2" /><path d="m21.7 16.4-.9-.3" /><path d="m15.2 13.9-.9-.3" /><path d="m16.6 18.7.3-.9" /><path d="m19.1 12.2.3-.9" /><path d="m19.6 18.7-.4-1" /><path d="m16.8 12.3-.4-1" /><path d="m14.3 16.6 1-.4" /><path d="m20.7 13.8 1-.4" /></svg>
+            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/transact">
+              <MdEnergySavingsLeaf />
               <span className='text-white'> Sell Energy</span>
             </a>
           </li>
           <li className='text-white'>
-            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg dark:text-white" href="/buy">
-              <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z" /><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8" /><path d="M15 2v5h5" /></svg>
+            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/buy">
+              <GrConnect />
               <span className='text-white'>Buy Energy</span>
             </a>
           </li>
           <li className='text-white'>
-            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-white rounded-lg dark:text-white" href="/quest">
-              <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z" /><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8" /><path d="M15 2v5h5" /></svg>
+            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/quest">
+              <FaGift />
               <span className='text-white'>Quest</span>
             </a>
           </li>
