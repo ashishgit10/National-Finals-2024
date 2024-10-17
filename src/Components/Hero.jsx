@@ -33,7 +33,7 @@ const Hero = () => {
 
     try {
       setLoading(true);
-         await connectMetaMask(); // Connect wallet
+      await connectMetaMask(); // Connect wallet
       toast("Wallet Connected",
         {
           style: {
@@ -86,7 +86,7 @@ const Hero = () => {
       <div className='bg-black overflow-hidden md:h-[120vh] relative z-0 md:pt-96 pt-32 pb-[50rem]'>
         <div className='relative text-center max-w-[160%]'>
           <div className='w-full absolute z-10 top-[-250px]'>
-            <h1 className='text-white font-semibold text-[50px]'>Revolutionizing Energy Trading</h1>
+            <h1 className='text-white font-semibold lg:text-[60px]'><span className='text-green-600'>Green</span> Power Clean Future</h1>
             <div className='flex justify-center items-center'>
               <h3 className='w-[48%] text-[20px] text-neutral-400'>Prioritizing Clean Energy Sources for a Carbon-Neutral Marketplace</h3>
             </div>
@@ -99,8 +99,16 @@ const Hero = () => {
           <div className='bg-[linear-gradient(#0a0a0a00_20%,_#d9d9d9_61)] py-6 m-auto md:max-w-[95%] rounded-3xl'>
             <div className='flex items-center relative justify-center'>
               <div className='absolute text-white z-[20]'>
-                <h1 className='lg:text-3xl text-4xl md:leading-[70px] font-medium'>Our<br />Carbon Neutral Pledge</h1>
+                <h1 className='lg:text-6xl text-sm md:leading-[3.5rem] font-medium'>Sustainable.<br />Decentralized.<br /> Your.</h1>
+                <button onClick={handleGoToDashboard} type="button" className="py-3 mt-6 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg text-gray-800 shadow-sm hover:shadow-2xl shadow-[#23f7dd] focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-[#23f7dd]">
+                Eco-Friendly
+                  <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
               </div>
+
               <div className='flex items-center relative justify-center md:w-[70%] h-full'>
                 <img className='md:w-[65%] max-w-[110%] z-[2] animate-spin-slow-1 opacity-[0.90] mix-blend-normal' srcSet={globe} />
                 <img className='md:w-[85%] max-w-[140%] z-[2] absolute animate-spin-slow' srcSet={ring} />
@@ -127,15 +135,17 @@ const Hero = () => {
               <div className='relative z-10'>
                 <span className='md:text-6xl text-5xl mb-5 font-medium flex flex-wrap justify-center items-center text-white text-center'>
                   Revolutionizing
-                  <span className=''>Energy Trading</span>
+                  <span className=''>&nbsp;Energy Trading</span>
                 </span>
                 <div className='pb-4 px-7 flex justify-center items-center flex-col'>
-                  <h2 className='text-center text-neutral-400 md:text-xl text-md'>Trade, Track, and Manage Energy</h2>
-                  <span className='text-center text-neutral-400 md:text-xl text-md mb-5'>
+                <div>
+                  <h2 className='text-center text-cyan-500 md:text-xl text-md'>Decentralize. Trade. Empower.</h2>
+             {/*      <span className='text-center text-neutral-400 md:text-xl text-md mb-5'>
                     in a Decentralized Marketplace
-                  </span>
-                  <div className='flex justify-center items-center gap-2'>
-                    <button onClick={handleGoToDashboard} type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg text-gray-800 shadow-sm hover:shadow-2xl shadow-[#23f7dd] focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-[#23f7dd]">
+                  </span> */}
+                </div>
+                  <div className='flex justify-center mt-6 items-center gap-2'>
+                    <button onClick={handleGoToDashboard} type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg text-gray-800 shadow-sm hover:shadow-2xl focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none bg-[#23f7dd]">
                       Go to DashBoard
                       <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M5 12h14"></path>

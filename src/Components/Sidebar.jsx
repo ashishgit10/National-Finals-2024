@@ -3,18 +3,21 @@ import { MdDashboard } from "react-icons/md";
 import { MdEnergySavingsLeaf } from "react-icons/md";
 import { GrConnect } from "react-icons/gr";
 import { FaGift } from "react-icons/fa6";
-
+import logo from '/logo.png'
 
 const Sidebar = () => {
   const [open, setopen] = useState(false)
 
   return (<div>
-    <div className={` ${open ? "translate-x-[-100%]" : "translate-x-[0%]"} md:!translate-x-[0%] transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-black lg:backdrop-filter-md  border-r-[1px] border-[#2e2e2e] pt-7 pb-10 overflow-y-auto   [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500`}>
+    <div className={` ${open ? "translate-x-[-100%]" : "translate-x-[0%]"} md:!translate-x-[0%] transition-all duration-300 transform fixed top-0 start-0 bottom-0 z-[60] w-64 bg-black lg:backdrop-filter-md  border-r-[1px] border-[#2e2e2e] pb-10 overflow-y-auto   [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500`}>
       <div className='flex justify-end items-center px-8'>
         <button className='text-white text-lg lg:hidden' onClick={() => setopen(!open)}>x</button>
       </div>
-
+      <div className='flex justify-center items-center lg:pt-3'>
+        <img className='lg:w-[180px]' srcSet={logo}/>
+      </div>
       <nav className="hs-accordion-group p-6 mt-5 w-full flex flex-col flex-wrap" >
+    
         <ul className="space-y-1.5">
           <li className='text-white'>
             <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/">
@@ -34,6 +37,12 @@ const Sidebar = () => {
             <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/transact">
               <MdEnergySavingsLeaf />
               <span className='text-white'>List Energy</span>
+            </a>
+          </li>
+          <li className='text-white'>
+            <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/dynamic">
+              <MdEnergySavingsLeaf />
+              <span className='text-white'>Dynamic</span>
             </a>
           </li>
           <li className='text-white'>

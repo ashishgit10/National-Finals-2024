@@ -4,6 +4,8 @@ import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useWallet } from '../context/WalletContext'
 import { useNavigate } from 'react-router-dom'
+import logo from '/logo.png'
+
 const navigation = [
     { name: 'Home', href: '#' },
     { name: 'Developers', href: '#' },
@@ -18,7 +20,7 @@ export const Navbar = () => {
         navigate('/');
     }
     console.log(walletAddress)
-    
+
     const handleDisconnect = async () => {
         try {
             await disconnectWallet();
@@ -36,8 +38,10 @@ export const Navbar = () => {
     return (
 
         <header className="fixed z-[99] w-full flex justify-center ">
-            <nav aria-label="Global" className="flex  w-[96%] rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
-
+            <nav aria-label="Global" className="flex  w-[96%] rounded-3xl justify-between items-center  justify-end lg:justify-center bg-black p-4">
+                <div>
+                    <img className='lg:w-[190px] w-[125px]' srcSet={logo} />
+                </div>
                 <div className="flex z-[99] lg:hidden ">
                     <button
                         type="button"
@@ -48,7 +52,7 @@ export const Navbar = () => {
                         <Bars3Icon aria-hidden="true" className="h-6 w-6" />
                     </button>
                 </div>
-                <div className="hidden lg:flex lg:gap-x-12">
+                <div className="hidden lg:flex lg:w-full lg:justify-center lg:mr-[190px] lg:gap-x-12">
                     {navigation.map((item) => (
                         <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-white">
                             {item.name}
@@ -64,6 +68,8 @@ export const Navbar = () => {
                     </button>
 
                 </div> */}
+                <div></div>
+
             </nav>
             <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
                 <div className="fixed inset-0 z-50" />

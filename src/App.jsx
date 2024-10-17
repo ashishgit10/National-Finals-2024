@@ -5,6 +5,7 @@ import Dashboard from './Screen/Dashboard'
 import SellEnergy from './Screen/SellEnergy'
 import BuyEnergy from './Screen/BuyEnergy'
 import Quest from './Screen/Quest'
+import Dynamic from './Screen/Dynamic'
 
 
 const App = () => {
@@ -18,7 +19,7 @@ const App = () => {
           <Route path="/transact" element={<SellEnergy />} />
           <Route path="/buy" element={<BuyEnergy />} />
           <Route path="/quest" element={<Quest />} />
-
+          <Route path="/dynamic" element={<Dynamic />} />
         </Routes>
       </BrowserRouter>
     </>
