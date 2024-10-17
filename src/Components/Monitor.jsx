@@ -1,35 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import FlipNumbers from 'react-flip-numbers';
 import WeatherCard from './WeatherCard';
 import Chart from './Chart';
 import Chart2 from './Chart2';
 import cardbg from "/card/card.webp";
 import particle from "/card/particle.webp";
-import Skeleton,{ SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 const Monitor = () => {
     const [loading, setLoading] = useState(true);
-    const [production, setProduction] = useState([20]);
-    const [consumption, setConsumption] = useState([14]);
+    const [production, setProduction] = useState([5]);
+    const [consumption, setConsumption] = useState([5]);
     const [surplus, setSurplus] = useState(production[production.length - 1] - consumption[consumption.length - 1]);
+    // Use refs to avoid resetting the interval when state changes
+    const productionRef = useRef(production);
+    const consumptionRef = useRef(consumption);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const newProduction = production[production.length - 1] + Math.floor(Math.random() * 10);
-            const newConsumption = consumption[consumption.length - 1] + Math.floor(Math.random() * 8);
+            const newProduction = productionRef.current[productionRef.current.length - 1] + Math.floor(Math.random() * 10);
+            const newConsumption = consumptionRef.current[consumptionRef.current.length - 1] + Math.floor(Math.random() * 8);
 
-            setProduction((prev) => [...prev, newProduction]);
-            setConsumption((prev) => [...prev, newConsumption]);
-            setSurplus(newProduction - newConsumption);
+            // Update states and refs
+            setProduction((prev) => {
+                productionRef.current = [...prev, newProduction];
+                return productionRef.current;
+            });
+            setConsumption((prev) => {
+                consumptionRef.current = [...prev, newConsumption];
+                return consumptionRef.current;
+            });
+            
+            setSurplus(Math.max(0, newProduction - newConsumption));
         }, 5000);
 
-        return () => clearInterval(interval);
-    }, [production, consumption]);
+        // Stop data generation after 1 minute (60000ms)
+        const timeout = setTimeout(() => {
+            clearInterval(interval);
+        }, 60000);
+
+        return () => {
+            clearInterval(interval);
+            clearTimeout(timeout);
+        };
+    }, []);
 
     useEffect(() => {
-        // Set loading to false after 3 seconds
-        const timer = setTimeout(() => setLoading(false), 3000);
+        const timer = setTimeout(() => setLoading(false), 600);
         return () => clearTimeout(timer);
     }, []);
 
@@ -51,14 +69,11 @@ const Monitor = () => {
                         <div className="w-[240px] p-4 flex flex-col justify-start rounded-xl bg-black/15 border-orange-500 border-2 backdrop-blur-md">
                             <h1 className="mt-2 text-white font-bold text-left">Total Production</h1>
                             {loading ? (
-                                <>
                                 <SkeletonTheme baseColor="#202020" highlightColor="#444">
                                     <Skeleton height={40} width={120} />
                                     <Skeleton height={20} />
                                     <Skeleton height={100} />
-                                
-                                    </SkeletonTheme>
-                                </>
+                                </SkeletonTheme>
                             ) : (
                                 <>
                                     <h3 className="text-lg font-bold text-white">
@@ -80,13 +95,11 @@ const Monitor = () => {
                         <div className="w-[240px] p-4 flex flex-col justify-start rounded-xl bg-black/15 border-blue-500 border-2 backdrop-blur-md">
                             <h1 className="mt-2 text-white font-bold text-left">Total Consumption</h1>
                             {loading ? (
-                                <>  <SkeletonTheme baseColor="#202020" highlightColor="#444">
-
+                                <SkeletonTheme baseColor="#202020" highlightColor="#444">
                                     <Skeleton height={40} width={120} />
                                     <Skeleton height={20} />
                                     <Skeleton height={100} />
                                 </SkeletonTheme>
-                                </>
                             ) : (
                                 <>
                                     <h3 className="text-lg font-bold text-white">
@@ -108,14 +121,11 @@ const Monitor = () => {
                         <div className="w-[240px] p-4 flex flex-col justify-start rounded-xl bg-black/15 border-yellow-500 border-2 backdrop-blur-md">
                             <h1 className="mt-2 text-white font-bold text-left">Surplus Energy</h1>
                             {loading ? (
-                                <>
                                 <SkeletonTheme baseColor="#202020" highlightColor="#444">
-
                                     <Skeleton height={40} width={120} />
                                     <Skeleton height={20} />
                                     <Skeleton height={100} />
                                 </SkeletonTheme>
-                                </>
                             ) : (
                                 <>
                                     <h3 className="text-lg font-bold text-white">

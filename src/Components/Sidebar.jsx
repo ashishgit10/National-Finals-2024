@@ -33,7 +33,7 @@ const Sidebar = () => {
           <li className='text-white'>
             <a className="flex items-center gap-x-3.5 py-2 px-2.5 text-lg text-white rounded-lg dark:text-white" href="/transact">
               <MdEnergySavingsLeaf />
-              <span className='text-white'> Sell Energy</span>
+              <span className='text-white'>List Energy</span>
             </a>
           </li>
           <li className='text-white'>

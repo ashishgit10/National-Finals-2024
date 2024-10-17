@@ -18,6 +18,7 @@ export const Navbar = () => {
         navigate('/');
     }
     console.log(walletAddress)
+    
     const handleDisconnect = async () => {
         try {
             await disconnectWallet();
@@ -33,8 +34,8 @@ export const Navbar = () => {
         navigate("/dashboard")
     }
     return (
-      
-         <header className="fixed z-[99] w-full flex justify-center ">
+
+        <header className="fixed z-[99] w-full flex justify-center ">
             <nav aria-label="Global" className="flex  w-[96%] rounded-3xl items-center  justify-end lg:justify-center bg-black p-4">
 
                 <div className="flex z-[99] lg:hidden ">
@@ -111,7 +112,7 @@ export const Navbar = () => {
                 </DialogPanel>
             </Dialog>
         </header>
-      
+
     )
 }
 

@@ -10,12 +10,12 @@ export default function Chart2({ production, consumption }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);
 
-  if (loading) {
+ /*  if (loading) {
     return (
       <div style={{ width: '900px', height: '300px' }}>
         <SkeletonTheme baseColor="#202020" highlightColor="#444">
@@ -23,7 +23,7 @@ export default function Chart2({ production, consumption }) {
         </SkeletonTheme>
       </div>
     );
-  }
+  } */
 
   return (
     <LineChart
