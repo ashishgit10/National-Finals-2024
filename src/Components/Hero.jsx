@@ -17,7 +17,7 @@ import g2 from "/green/g2.webp";
 import g6 from "/green/g6.webp";
 import g5 from "/green/g5.webp";
 import toast, { Toaster } from 'react-hot-toast';
-import web3 from '../web3';
+
 
 const Hero = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
