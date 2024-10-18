@@ -44,7 +44,7 @@ const MonthlyChallengesCard = () => {
         <>
             <Toaster position="bottom-left" />
 
-            <div className="border-[#0e9f6e] border-2 inline-block bg-neutral-900 p-6 rounded-xl shadow-lg text-white">
+            <div className="border-[#0e9f6e] border-2 inline-block bg-neutral-900 p-4 rounded-xl shadow-lg text-white">
                 <h2 className="text-2xl font-bold mb-4">Monthly Eco Challenges</h2>
 
                 <div className='flex gap-3 items-center'>
@@ -67,7 +67,7 @@ const MonthlyChallengesCard = () => {
                                         tasks.map(task => (
                                             <li key={task.id} className="flex text-xl items-center">
                                                 <span className={task.completed ? "line-through" : ""}>
-                                                    {task.title}
+                                                <span className='bg-neutral-700 p-1'>{task.title}</span>
                                                 </span>
                                              {/*    <button onClick={() => handleTaskCompletion(task.id)} className="ml-2">
                                                     {task.completed ? "Undo" : "Complete"}

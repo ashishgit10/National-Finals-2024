@@ -43,7 +43,7 @@ const WeeklyChallengesCard = () => {
             <Toaster
                 position="bottom-left" />
 
-            <div className="border-[#0e9f6e] border-2 inline-block bg-neutral-900 p-6 rounded-xl shadow-lg text-white">
+            <div className="border-[#0e9f6e] border-2 inline-block bg-neutral-900 p-4 rounded-xl shadow-lg text-white">
                 <h2 className="text-2xl font-bold mb-4">Weekly Eco Challenges</h2>
 
                 <div className='flex gap-3 items-center'>
@@ -68,7 +68,7 @@ const WeeklyChallengesCard = () => {
                                             <li key={task.id} className="flex text-xl items-center">
                                                 <div className='bg-neutral-900'>
                                                     <span className={task.completed ? "line-through" : ""}>
-                                                        {task.title}
+                                                        <span className='bg-neutral-700 p-1'>{task.title}</span>
                                                     </span>
                                                 </div>
                                                 {/*   <button onClick={() => handleTaskCompletion(task.id)} className="ml-2">
@@ -79,14 +79,6 @@ const WeeklyChallengesCard = () => {
                                     )}
                                 </ul>
                             </SkeletonTheme>
-
-                            {/*      <button
-                                onClick={claimNFT}
-                                className={`text-black bg-green-300 rounded-2xl text-[14px] w-full py-2 mt-4 ${areAllTasksCompleted ? "opacity-100" : "opacity-50"}`}
-                                disabled={!areAllTasksCompleted}
-                            >
-                                {areAllTasksCompleted ? "Claim NFT Reward!" : "Completed All Tasks"}
-                            </button> */}
                         </div>
                     </div>
 
