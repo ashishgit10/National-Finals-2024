@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import web3 from '../web3';
+import web3 from '../web3.js';
 import Sidebar from '../Components/Sidebar';
 import WalletId from '../Components/WalletId';
 import toast, { Toaster } from 'react-hot-toast';
