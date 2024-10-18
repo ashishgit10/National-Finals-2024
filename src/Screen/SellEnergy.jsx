@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import web3 from '../web3';
+import web3 from '../web3.js';
 import listingcontractABI from '../abi/ListingContract.json';
 import Sidebar from '../Components/Sidebar';
 import WalletId from '../Components/WalletId';
